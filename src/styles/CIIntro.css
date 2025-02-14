@@ -1,0 +1,103 @@
+.ci-intro {
+    padding-bottom: 10px;
+    padding-top: 20px;
+    padding-right: 30px;
+    padding-left: 30px;
+    background-color: #f2f2f2;
+    border-radius: 0px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-section {
+    background-color: #ffffff;
+    margin-bottom: 50px;
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    /* 높이는 콘텐츠에 따라 자동으로 조정 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    box-sizing: border-box;
+    /* 패딩 포함된 크기 계산 */
+}
+
+/* 작은 화면에 대한 스타일 */
+@media (max-width: 768px) {
+    .logo-section {
+        padding: 10px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* 아주 작은 화면에 대한 스타일 */
+@media (max-width: 480px) {
+    .logo-section {
+        padding: 5px;
+        margin-bottom: 20px;
+        box-shadow: none;
+        /* 그림자 제거로 간결하게 */
+    }
+}
+
+.header {
+    position: relative;
+    z-index: 2;
+    background-color: #f2f2f2;
+    padding: 10px;
+    padding-left: 60px;
+    width: 100%;
+}
+
+@media (max-width: 1024px) {
+    .header {
+        padding-left: 0px;
+        /* 화면이 작아지면 왼쪽 패딩 축소 */
+    }
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0;
+}
+
+.logo-image {
+    max-height: 200px;
+    width: auto;
+    object-fit: contain;
+}
+
+.header h2 {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #000000;
+}
+
+.download-button {
+    margin-left: 15px;
+    text-decoration: none;
+    background-color: #d9d9d9;
+    padding: 5px 8px;
+    border-radius: 8px;
+    font-weight: 100;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.download-button:hover {
+    background-color: #d9d9d9;
+}

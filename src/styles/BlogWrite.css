@@ -1,0 +1,264 @@
+.blog-write {
+    max-width: 860px;
+    margin: 50px auto;
+    padding: 20px;
+    font-family: 'Pretendard-Regular', sans-serif;
+    display: flex;
+    flex-direction: column;
+    /* 세로 정렬 */
+    gap: 20px;
+    /* 요소 간 간격 */
+}
+
+.category-select {
+    width: 20%;
+    padding: 7px;
+    font-size: 16px;
+    color: #6A6A6A;
+    border: 1px solid #6A6A6A;
+}
+
+.title-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #6A6A6A;
+    font-size: 24px;
+    padding: 10px 0px;
+    margin-bottom: 20px;
+    outline: none;
+}
+
+.content-input {
+    width: 100%;
+    min-height: 300px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.tag-list {
+    display: flex;
+    /* Flexbox 사용 */
+    flex-wrap: wrap;
+    /* 태그가 많아지면 줄바꿈 */
+    align-items: center;
+    /* 세로 가운데 정렬 */
+    gap: 5px;
+}
+
+.tag-input-field {
+    border: none;
+    /* 기본 테두리 제거 */
+    flex-grow: 1;
+    /* 남은 공간 채우기 */
+    min-width: 150px;
+    /* 최소 너비 설정 */
+    outline: none;
+    /* 포커스 시 기본 효과 제거 */
+    padding: 5px 10px;
+    /* 입력 필드 여백 */
+    color: #6A6A6A;
+}
+
+.tag {
+    padding: 5px 10px;
+    color: #6A6A6A;
+}
+
+.remove-tag-button {
+    margin-left: 5px;
+    background: none;
+    border: none;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.image-upload {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.image-preview img {
+    width: 100%;
+    /* 가로폭에 맞춤 */
+    max-height: 300px;
+    object-fit: contain;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: end;
+    /* 가운데 정렬 */
+    gap: 20px;
+    /* 버튼 간 간격 */
+}
+
+.submit-button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 30px;
+    /* 버튼 크기를 키움 */
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #333;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+@media print {
+    body {
+        margin: 0 !important;
+    }
+}
+
+.main-container {
+    font-family: 'Lato';
+    width: 100%;
+    /* 기본적으로 화면 전체를 사용 */
+    margin-left: auto;
+    /* 수평 가운데 정렬 */
+    margin-right: auto;
+    /* 수평 가운데 정렬 */
+    box-sizing: border-box;
+    /* 패딩 포함 너비 계산 */
+}
+
+.ck-content {
+    font-family: 'Lato';
+    line-height: 1.6;
+    word-break: break-word;
+}
+
+.ck-editor__editable {
+    min-height: 400px;
+}
+
+.ck-editor__editable ol {
+    padding-left: 20px;
+    /* 패딩 추가로 번호가 잘리지 않게 */
+}
+
+/* 제목 스타일 추가 */
+.ck-content h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.ck-content h2 {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.ck-content h3 {
+    font-size: 1.75em;
+    font-weight: bold;
+}
+
+.ck-content h4 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.ck-content h5 {
+    font-size: 1.25em;
+    font-weight: bold;
+}
+
+.ck-content h6 {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+/* BlogWrite.css에 추가 */
+
+/* CKEditor 에디터 크기 및 이미지 관련 스타일 */
+.ck-editor__editable {
+    min-height: 500px !important;
+}
+
+.ck-content img {
+    max-width: 800px !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 20px auto !important;
+    display: block !important;
+}
+
+/* 이미지 업로드 영역 스타일 */
+.ck-file-dialog-button {
+    margin: 10px !important;
+}
+
+.thumbnail-upload {
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+}
+
+.thumbnail-label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.thumbnail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.thumbnail-input {
+    display: none;
+}
+
+.thumbnail-button {
+    padding: 8px 16px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.thumbnail-button:hover {
+    background-color: #e0e0e0;
+}
+
+.thumbnail-preview {
+    position: relative;
+    max-width: 300px;
+    margin-top: 10px;
+}
+
+.thumbnail-preview img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.thumbnail-remove {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 4px 8px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.thumbnail-remove:hover {
+    background-color: #fff;
+}

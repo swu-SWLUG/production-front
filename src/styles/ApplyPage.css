@@ -1,0 +1,238 @@
+.apply-page {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.apply-content {
+  text-align: center;
+}
+
+.apply-title {
+  font-size: 24px;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.apply-logo {
+  width: 300px;
+  height: auto;
+  margin-bottom: 30px;
+}
+
+.apply-description {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.apply-period {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.apply-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 50px;
+}
+
+.apply-button {
+  text-decoration: none;
+  width: 393px;
+  height: 52px;
+  line-height: 52px;
+  border: 2px solid #444CE0;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  background-color: white;
+  color: #444CE0;
+  transition: background-color 0.3s, color 0.3s;
+  display: inline-block;
+}
+
+.apply-button:hover {
+  background-color: #444CE0;
+  color: white;
+}
+
+/* 탭 스타일 */
+.tab-container {
+  margin-top: 20px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tab-nav {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.tab-list {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  border-bottom: 2px solid #e5e7eb;
+  position: relative;
+}
+
+.tab-item {
+  padding: 12px 24px;
+  font-size: 16px;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  font-weight: 500;
+}
+
+.tab-item:hover {
+  color: #444CE0;
+}
+
+.tab-item.active {
+  color: #444CE0;
+}
+
+.tab-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #444CE0;
+  transition: all 0.3s ease;
+}
+
+.tab-content {
+  background-color: white;
+  border-radius: 16px;
+  padding: 20px;
+  min-height: 200px;
+}
+
+.tab-panel {
+  display: grid;
+  gap: 20px;
+  padding: 10px;
+}
+
+/* 커리큘럼 카드 스타일 */
+.curriculum-card {
+  background-color: #f8fafc;
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  border: 1px solid #e5e7eb;
+}
+
+.curriculum-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #444CE0;
+  margin-bottom: 8px;
+}
+
+.card-description {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.8;
+  margin-bottom: 4px;
+}
+
+/* 커리큘럼 변동 가능성 안내 */
+.curriculum-notice {
+  color: #9B2C2C;
+  font-size: 14px;
+  margin-top: 16px;
+  text-align: center;
+}
+
+/* 유의사항 섹션 */
+.notice-section {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.notice-box {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 20px;
+}
+
+.notice-item {
+  margin-bottom: 12px;
+}
+
+.notice-item:last-child {
+  margin-bottom: 0;
+}
+
+.notice-item p {
+  color: #374151;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* 기본 정보 스타일 */
+.info-title {
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.info-text {
+  font-size: 18px;
+  margin: 1rem 0;
+}
+
+.info-list {
+  font-size: 18px;
+}
+
+.info-list li {
+  margin: 0.5rem 0;
+}
+
+/* 구분선 */
+.divider {
+  width: 2px;
+  height: 40px;
+  margin: 40px auto;
+  background-color: #202123;
+}
+
+/* 커리큘럼 박스 */
+.curriculum-box {
+  background-color: #fff;
+  border: 2px solid #ddd;
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 연락처 정보 */
+.contact-info {
+  margin-bottom: 50px;
+}
+
+.contact-info p {
+  margin: 0.5rem 0;
+  font-size: 18px;
+}

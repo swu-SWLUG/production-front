@@ -1,0 +1,136 @@
+.notice-write {
+    max-width: 860px;
+    margin: 50px auto;
+    padding: 20px;
+    font-family: 'Pretendard-Regular', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.category-select {
+    width: 20%;
+    padding: 7px;
+    font-size: 16px;
+    color: #6A6A6A;
+    border: 1px solid #6A6A6A;
+}
+
+.category-select:disabled {
+    color: #6A6A6A;
+    background-color: #fff;
+    opacity: 1;
+}
+
+.title-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #6A6A6A;
+    font-size: 24px;
+    padding: 10px 0px;
+    margin-bottom: 20px;
+    outline: none;
+}
+
+.content-input {
+    width: 100%;
+    min-height: 300px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+}
+
+.submit-button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #333;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+@media print {
+    body {
+        margin: 0 !important;
+    }
+}
+
+.main-container {
+    font-family: 'Lato';
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+.ck-content {
+    font-family: 'Lato';
+    line-height: 1.6;
+    word-break: break-word;
+}
+
+.ck-editor__editable {
+    min-height: 500px !important;
+}
+
+.ck-content img {
+    max-width: 800px !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 20px auto !important;
+    display: block !important;
+}
+
+/* 이미지 업로드 영역 스타일 */
+.ck-file-dialog-button {
+    margin: 10px !important;
+}
+
+/* CKEditor 내 제목 스타일 */
+.ck-content h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+.ck-content h2 {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.ck-content h3 {
+    font-size: 1.75em;
+    font-weight: bold;
+}
+
+.ck-content h4 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.ck-content h5 {
+    font-size: 1.25em;
+    font-weight: bold;
+}
+
+.ck-content h6 {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.ck-editor__editable ol {
+    padding-left: 20px;
+}

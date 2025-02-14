@@ -1,0 +1,57 @@
+.security-awards-container {
+    max-width: 1200px;
+    margin-bottom: 30px;
+    padding: 10px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.security-awards-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.security-awards-year {
+    font-size: 30px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.security-awards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #eaeaea;
+}
+
+.security-awards-item {
+    font-size: 16px;
+    color: #4a4a4a;
+    line-height: 1.6;
+    white-space: pre-line;
+    text-indent: -42px;
+    padding-left: 45px;
+}
+
+@media (max-width: 768px) {
+    .security-awards-container {
+        padding: 16px;
+        gap: 40px;
+    }
+
+    .security-awards-year {
+        font-size: 28px;
+    }
+
+    .security-awards-list {
+        padding: 16px;
+    }
+}
