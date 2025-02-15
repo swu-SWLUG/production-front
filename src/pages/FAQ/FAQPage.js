@@ -7,7 +7,7 @@ import '../../styles/FAQPage.css';
 
 const FAQPage = () => {
     const navigate = useNavigate();
-    const [index, setIndex] = useState('');
+    const [index, setIndex] = useState(0);
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const categories = ['전체', '지원', '활동', '기타'];
