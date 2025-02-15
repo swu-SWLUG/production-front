@@ -3,6 +3,7 @@ import axios from 'axios';
 import PrevNextButtons from "../../components/Auth/PrevNextButtons";
 import "../../styles/UserRegistration.css";
 import "../../styles/input.css"
+import { FaEye, FaEyeSlash } from "react-icons/fa"; 
 
 //회원가입
 const UserRegistration = ({ onNext, onPrev }) => {
@@ -37,6 +38,13 @@ const UserRegistration = ({ onNext, onPrev }) => {
   const [isIdVerified, setIsIdVerified] = useState(false);
   const [passwordMatch, setPasswordMatch] = useState(false);
   const [verifiedId, setVerifiedId] = useState("");
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
+  const toggleConfirmPasswordVisibility = () =>
+    setShowConfirmPassword(!showConfirmPassword);
 
   useEffect(() => {
     let countdown;
@@ -115,9 +123,12 @@ const UserRegistration = ({ onNext, onPrev }) => {
 
     if (name === "pw") {
       const isValid = validatePassword(value);
+      const match = value === formData.pwCheck;
+      setPasswordMatch(match);
       setError(prev => ({
         ...prev,
-        pw: isValid ? "" : "비밀번호는 10자 이상이며, 영문, 숫자, 특수문자를 포함해야 합니다."
+        pw: isValid ? "" : "비밀번호는 10자 이상이며, 영문, 숫자, 특수문자를 포함해야 합니다.",
+        confirmPw: formData.pwCheck ? (!match ? "비밀번호가 일치하지 않습니다." : "") : ""
       }));
     }
 
@@ -275,41 +286,47 @@ const UserRegistration = ({ onNext, onPrev }) => {
 
           {/* 비밀번호 입력 필드 */}
           <div className="form-field">
-            <div className="input-wrapper">
-              <label>비밀번호</label>
-              <div className="input-container">
-                <input
-                    type="password"
-                    name="pw"
-                    value={formData.pw}
-                    onChange={handleChange}
-                    placeholder="비밀번호를 입력하세요"
-                    className="info-form_input"
-                />
+              <div className="input-wrapper">
+                  <label>비밀번호</label>
+                  <div className="password-input-container">
+                      <input
+                          type={showPassword ? "text" : "password"}
+                          name="pw"
+                          value={formData.pw}
+                          onChange={handleChange}
+                          placeholder="비밀번호를 입력하세요"
+                          className="info-form_input"
+                      />
+                      <span className="password-toggle" onClick={togglePasswordVisibility}>
+                          {showPassword ? <FaEyeSlash /> : <FaEye />}
+                      </span>
+                  </div>
               </div>
-            </div>
-            {error.pw && <div className="error-message">{error.pw}</div>}
-            {!error.pw && formData.pw && <div className="success-message">사용 가능한 비밀번호입니다.</div>}
+              {error.pw && <div className="error-message">{error.pw}</div>}
+              {!error.pw && formData.pw && <div className="success-message">사용 가능한 비밀번호입니다.</div>}
           </div>
 
           {/* 비밀번호 확인 필드 */}
           <div className="form-field">
-            <div className="input-wrapper">
-              <label>비밀번호 확인</label>
-              <div className="input-container">
-                <input
-                    type="password"
-                    name="pwCheck"
-                    value={formData.pwCheck}
-                    onChange={handleChange}
-                    placeholder="비밀번호를 다시 입력하세요"
-                    className="info-form_input"
-                />
+              <div className="input-wrapper">
+                  <label>비밀번호 확인</label>
+                  <div className="password-input-container">
+                      <input
+                          type={showConfirmPassword ? "text" : "password"}
+                          name="pwCheck"
+                          value={formData.pwCheck}
+                          onChange={handleChange}
+                          placeholder="비밀번호를 다시 입력하세요"
+                          className="info-form_input"
+                      />
+                      <span className="password-toggle" onClick={toggleConfirmPasswordVisibility}>
+                          {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                      </span>
+                  </div>
               </div>
-            </div>
-            {error.confirmPw && <div className="error-message">{error.confirmPw}</div>}
-            {!error.confirmPw && formData.pwCheck && passwordMatch &&
-                <div className="success-message">비밀번호가 일치합니다.</div>}
+              {error.confirmPw && <div className="error-message">{error.confirmPw}</div>}
+              {!error.confirmPw && formData.pwCheck && passwordMatch &&
+                  <div className="success-message">비밀번호가 일치합니다.</div>}
           </div>
 
           {/* 이름 입력 필드 */}
