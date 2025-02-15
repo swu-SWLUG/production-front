@@ -27,9 +27,8 @@ const HomePage = () => {
     return (
         <div className="container mx-auto px-4 py-8 bg-white">
             <HomeMain />
-            {/* 공지사항 추가 */}
             <div className="mt-12">
-                <RecentNotices data={data} />
+                {Array.isArray(data) && data.length > 0 && <RecentNotices data={data} />}
             </div>
         </div>
     );
