@@ -1,5 +1,4 @@
 .privacy-container {
-  padding-top: 20px;
   padding-right: 20px;
   padding-bottom: 60px;
   padding-left: 20px;
@@ -8,17 +7,17 @@
 }
 
 .privacy-title {
-  text-align: center;
-  font-size: 26px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  font-weight: bold;
+  text-align: justify;
+  font-size: 1.8rem;
+  margin-top: 30px;
+  font-weight: 700;
 }
 
 .privacy-heading {
   font-size: 22px;
-  margin-top: 20px;
+  margin-top: 50px;
   margin-bottom: 10px;
+  font-weight: bold;
 }
 
 ul {
@@ -26,5 +25,36 @@ ul {
 }
 
 .privacy-intro {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.privacy-table {
+  width: 90%;
+  border-collapse: collapse;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.privacy-table th {
+  padding: 10px;
+  font-weight: bold;
+  border-bottom: 2px solid black;
+  /* 헤더 아래 두꺼운 줄 */
+}
+
+.privacy-table td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  /* 일반 행은 얇은 줄 */
+}
+
+.privacy-table th {
+  font-weight: bold;
 }
