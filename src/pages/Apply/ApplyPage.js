@@ -35,11 +35,18 @@ const ApplyPage = () => {
                                 SWLUG에 대해 자세히 알아보기
                             </a>
                             <a
-                                href="https://docs.google.com/forms/d/e/1FAIpQLSeStCL0uIPF7YaULhSaUu34ge_Y8JPGvrBZtKcydOBExu0LHQ/closedform"
+                                href="https://forms.gle/7nUrRZkW2zkym3a5A"
                                 className="apply-button apply-now"
                                 target="_blank" rel="noopener"
                             >
-                                SWLUG 신입 학회원 지원하러 가기
+                                [1학년] SWLUG 신입 학회원 지원하러 가기
+                            </a>
+                            <a
+                                href="https://forms.gle/uWbcV9BrHdS7JzSs9"
+                                className="apply-button apply-now"
+                                target="_blank" rel="noopener"
+                            >
+                                [2학년] SWLUG 신입 학회원 지원하러 가기
                             </a>
                         </div>
                         <section className="additional-info">
