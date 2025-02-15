@@ -413,9 +413,6 @@ function ResetPassword() {
                   placeholder="비밀번호 확인 입력"
                   disabled={!emailVerified}
               />
-              {passwordMatch && (
-                  <img src="/pwCheck.png" alt="check" className="check-icon"/>
-              )}
             </div>
           </div>
           {(error.confirmPassword || success.confirmPassword) && (
