@@ -11,6 +11,9 @@ const NoticeDetailPage = () => {
     const [notice, setNotice] = useState(null);
     const [loading, setLoading] = useState(true);
     const [adjacentNotice, setAdjacentNotice] = useState({ previous: null, next: null });
+    const userRole = localStorage.getItem("userRole"); // 로컬 스토리지에서 역할 가져오기
+    const allowedRoles = ["ROLE_ADMIN"];
+
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -111,7 +114,7 @@ const NoticeDetailPage = () => {
                     })}
                 </span>
             </div>
-            {isAuthenticated && (
+            {isAuthenticated && allowedRoles.includes(userRole) && (
                 <div className="notice-actions">
                     <button onClick={handleEdit}>수정</button>
                     <span style={{margin: '0 10px', color: '#ddd'}}>|</span>
