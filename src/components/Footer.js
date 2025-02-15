@@ -33,10 +33,10 @@ const Footer = () => {
             <div className="contact-info">
               <h3 className="text-lg font-semibold mb-2">Contact Us</h3>
               <p className="text-sm">
-                00기 학회장_김슈니: <a href="mailto:swny.swu.ac.kr" className="hover:underline">swny.swu.ac.kr</a>
+                26기 학회장_김수민: <a href="mailto:suming@swu.ac.kr" className="hover:underline">suming@swu.ac.kr</a>
               </p>
               <p className="text-sm">
-                00기 부학회장_이슈니: <a href="mailto:swulee.swu.ac.kr" className="hover:underline">swulee.swu.ac.kr</a>
+                26기 부학회장_김도연: <a href="mailto:yeando@swu.ac.kr" className="hover:underline">yeando@swu.ac.kr</a>
               </p>
             </div>
 
