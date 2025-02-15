@@ -9,7 +9,6 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 40px;
-    margin-right: 250px;
 }
 
 .search-bar {
@@ -87,7 +86,8 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 15px;
-    overflow: hidden; /* 이미지가 컨테이너를 벗어나지 않도록 설정 */
+    overflow: hidden;
+    /* 이미지가 컨테이너를 벗어나지 않도록 설정 */
 }
 
 /* 기본 이미지 스타일 (이전 설정 유지) */
