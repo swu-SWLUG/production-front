@@ -24,16 +24,13 @@ function Privacy() {
 
   return (
       <div className="privacy-container text-left">
-        <p style={{ fontWeight: "900", fontSize: "40px" }}>SWLUG</p>
         <h1 className="privacy-title">개인정보처리방침</h1>
-        <hr style={{ border: "0", height: "1px", backgroundColor: "#202123" }}/>
-        <br/>
 
         <p className="privacy-intro">
           [SWLUG] (이하 '소학회')는 사용자의 개인정보를 중요시하며, 이를 보호하기 위해 최선을 다하고 있습니다.
           본 방침은 소학회 웹사이트를 통해 수집된 개인정보가 어떻게 사용되고 보호되는지를 명확히 설명하며, 사용자 권리와 선택 사항에 대해 안내합니다.
         </p>
-
+        <hr style={{ border: "0", height: "1px", backgroundColor: "#202123" }}/>
         <section>
           <h2 className="privacy-heading">1. 개인정보 수집 항목 및 방법</h2>
           <p>(1) 수집 항목<br/>
@@ -132,27 +129,46 @@ function Privacy() {
           <ul>
             <li>사용자의 개인정보를 보호하고 관련 불만을 처리하기 위해 다음과 같이 개인정보 보호책임자를 지정하고 있습니다.<br/><br/>
               <ul>
-                <li>- 책임자: [책임자 이름]</li>
-                <li>- 이메일: swu.swlug@gmail.com</li>
-                <li>- 전화번호: [책임자 연락처]</li>
+                <li>- 책임자: 김수민(SWLUG 학회장)</li>
+                <li>- 이메일: suming@swu.ac.kr</li>
+                <li>- 전화번호: 010-8376-4075</li>
               </ul>
             </li>
           </ul>
         </section>
 
         <section>
-          <h2 className="privacy-heading">8. 기타 안내</h2>
+        <h2 className="privacy-heading">8. 기타 안내</h2>
           <ul>
-            <li>개인정보 침해로 인한 신고나 상담이 필요할 경우 아래 기관에 문의할 수 있습니다.<br/><br/>
-              <ul>
-                <li>- 개인정보침해신고센터: [privacy.kisa.or.kr](http://privacy.kisa.or.kr/) / 118</li>
-                <li>- 경찰청 사이버안전국: [cyberbureau.police.go.kr](http://cyberbureau.police.go.kr/) / 182</li><br/>
-              </ul>
-            </li>
-            <p>
-              본 방침은 [사이트 배포일]부터 적용됩니다.
-            </p>
+            <li>개인정보 침해로 인한 신고나 상담이 필요할 경우 아래 기관에 문의할 수 있습니다.</li>
           </ul>
+
+          <div className="table-container">
+            <table className="privacy-table">
+              <thead>
+                <tr>
+                  <th>기관</th>
+                  <th>전화번호</th>
+                  <th>URL</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>개인정보침해신고센터</td>
+                  <td>118</td>
+                  <td><a href="http://privacy.kisa.or.kr/" target="_blank" rel="noopener noreferrer">privacy.kisa.or.kr</a></td>
+                </tr>
+                <tr>
+                  <td>경찰청 사이버안전국</td>
+                  <td>182</td>
+                  <td><a href="http://cyberbureau.police.go.kr/" target="_blank" rel="noopener noreferrer">cyberbureau.police.go.kr</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+            <p>
+              본 방침은 2025년 2월 24일부터 적용됩니다.
+            </p>
         </section>
       </div>
   );

@@ -6,6 +6,7 @@ const Footer = () => {
   const handlePrivacyClick = () => {
     window.history.pushState({}, '', '/privacy');
     window.location.reload();
+    window.scrollTo(0,0);
   };
 
   const handleExternalLink = (url, e) => {
@@ -46,7 +47,7 @@ const Footer = () => {
             <p className="text-sm">
               26기 학회장_김수민: {" "}
               <button
-                onClick={() => handleCopyEmail('swu.swlug@gmail.com')} 
+                onClick={() => handleCopyEmail('suming@swu.ac.kr')} 
                 className="hover:underline focus:outline-none"
                 aria-label="이메일 복사"
               >
@@ -126,7 +127,7 @@ const Footer = () => {
 
         <div className="logo-and-policy text-right flex flex-col items-end">
           <button
-            className="privacy-policy text-sm mb-2 cursor-pointer hover:underline focus:outline-none focus:ring-2 focus:ring-white rounded px-2"
+            className="privacy-policy text-sm mb-2 cursor-pointer hover:underline focus:outline-none rounded px-2"
             onClick={handlePrivacyClick}
             aria-label="개인정보처리방침 보기"
           >
@@ -134,7 +135,7 @@ const Footer = () => {
           </button>
           <button
             onClick={handlePrivacyClick}
-            className="focus:outline-none focus:ring-2 focus:ring-white rounded"
+            className="focus:outline-none "
             aria-label="개인정보처리방침 보기"
           >
             <img
