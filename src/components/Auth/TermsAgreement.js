@@ -25,6 +25,10 @@ function TermsAgreement({ onNext, onPrev }) {
   };
 
   useEffect(() => {
+    alert('본 서비스는 학회원만 가입할 수 있습니다.\n학회원이 아닌 경우 가입이 제한될 수 있습니다.');
+  }, []);
+
+  useEffect(() => {
     setAllCheck(firstCheck && secondCheck);
   }, [firstCheck, secondCheck]);
 
