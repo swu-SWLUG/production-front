@@ -6,7 +6,7 @@ const Footer = () => {
   const handlePrivacyClick = () => {
     window.history.pushState({}, '', '/privacy');
     window.location.reload();
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   };
 
   const handleExternalLink = (url, e) => {
