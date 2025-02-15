@@ -1,31 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useSelector } from 'react-redux'; // 추가됨
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import "../../styles/BlogMain.css";
 import TagFilter from "../../components/Blog/TagFilter";
 import { getAllTags } from "../../services/blogAPI";
 
 const BlogMain = () => {
-    const {isAuthenticated} = useSelector(state => state.auth); // 추가됨
-    const [posts, setPosts] = useState([]); // 게시물 데이터
-    const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
-    // const [tags, setTags] = useState(["인턴", "채용", "BOB", "등록X"]); // 태그 목록
-    const [selectedTag, setSelectedTag] = useState(""); // 선택된 태그
-    const [tags, setTags] = useState([]); // 선택된 태그들을 배열로 관리
+    const {isAuthenticated} = useSelector(state => state.auth);
+    const [posts, setPosts] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [selectedTag, setSelectedTag] = useState("");
+    const [tags, setTags] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
-    const [totalPages, setTotalPages] = useState(1); // 총 페이지 수
+    const [totalPages, setTotalPages] = useState(1);
     const [totalElements, setTotalElements] = useState(0);
-    const userRole = localStorage.getItem("userRole"); // 로컬 스토리지에서 역할 가져오기
-    const allowedRoles = ["ROLE_USER", "ROLE_ADMIN"]; // 글쓰기 허용된 역할
+    const userRole = localStorage.getItem("userRole");
+    const allowedRoles = ["ROLE_USER", "ROLE_ADMIN"];
 
+    const postsPerPage = 9;
+    const navigate = useNavigate();
 
-    const postsPerPage = 9; // 한 페이지에 표시할 게시물 수
-    const navigate = useNavigate(); // 페이지 이동을 위한 hook
-
-    // URL 파라미터 읽기
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const initialCategory = searchParams.get("category") || "";
@@ -36,24 +33,34 @@ const BlogMain = () => {
             setError(null);
             setLoading(true);
 
-            // 검색어 전처리 제거 - 서버에서 처리
+            console.log('API 요청:', { page, category: selectedCategory, search, tags });
+
             const response = await axios.get(
                 `/api/blog?page=${page}&category=${selectedCategory}&searchTerm=${search}&size=${postsPerPage}&tags=${tags}`,
                 {
-                    withCredentials: true, // 세션 쿠키 포함
+                    withCredentials: true,
+                    headers: {
+                        'Cache-Control': 'no-cache',
+                        'Pragma': 'no-cache'
+                    }
                 }
             );
-            setPosts(response.data.blogs);
-            setTotalPages(response.data.totalPages);
-            setTotalElements(response.data.totalElements);
+
+            console.log('API 응답:', response.data);
+
+            setPosts(response.data?.blogs || []);
+            setTotalPages(response.data?.totalPages || 1);
+            setTotalElements(response.data?.totalElements || 0);
         } catch (error) {
+            console.error('API 에러:', error);
             setError('블로그를 불러오는데 실패했습니다.');
-            console.error("Error fetching blogs:", error);
+            setPosts([]);
+            setTotalPages(1);
+            setTotalElements(0);
         } finally {
             setLoading(false);
         }
     };
-
 
     const handleBlogTitleClick = () => {
         setCurrentPage(1);
@@ -69,16 +76,17 @@ const BlogMain = () => {
         const setAllTags = async () => {
             try {
                 const allTags = await getAllTags();
-                setTags(allTags);
+                setTags(allTags || []);
             } catch (error) {
-                setError('모든 태그를 불러오는데 실패했습니다.');
-                console.error("Error fetching tags:", error);
+                console.error('태그 로드 에러:', error);
+                setError('태그를 불러오는데 실패했습니다.');
+                setTags([]);
             }
         };
 
         setAllTags();
         fetchBlogs(currentPage, searchTerm, selectedTag);
-    }, [currentPage, selectedCategory]);
+    }, [currentPage, selectedCategory, selectedTag]);
 
     const categoryMapping = {
         "0": "공지사항",
@@ -88,20 +96,16 @@ const BlogMain = () => {
         "4": "활동",
     };
 
-
     useEffect(() => {
-        // 검색어 없을 때만 currentPage 변경으로 API 호출
         if (!searchTerm) {
             fetchBlogs(currentPage, searchTerm, selectedTag);
         }
     }, [currentPage]);
 
-    // 게시물 필터링
     useEffect(() => {
-        setSelectedCategory(initialCategory); // URL 파라미터 기반으로 상태 초기화
+        setSelectedCategory(initialCategory);
     }, [initialCategory]);
 
-    // 게시물 클릭 시 상세 페이지로 이동
     const handlePostClick = (boardId) => {
         navigate(`/board/${boardId}`);
         window.scrollTo(0, 0);
@@ -131,49 +135,16 @@ const BlogMain = () => {
         }
     };
 
-    // 페이지 변경 핸들러
     const handleSearchClick = () => {
         handleSearch(searchTerm);
         window.scrollTo(0, 0);
     };
 
-    // 태그 선택 핸들러
     const handleTagSelect = (tag) => {
         setSelectedTag(tag);
-        setCurrentPage(1); // 태그 선택 시 첫 페이지로 이동
-        fetchBlogs(currentPage, searchTerm, tag);
+        setCurrentPage(1);
+        fetchBlogs(1, searchTerm, tag);
     };
-
-    // const handleTagSelect = (tag) => {
-    //     setSelectedTag(tag);
-    //     if (tags.includes(tag)) {
-    //         setTags(tags.filter(t => t !== tag)); // 이미 선택된 태그는 제거
-    //     } else {
-    //         setTags([...tags, tag]); // 새 태그는 배열에 추가
-    //     }
-    //     setCurrentPage(1); // 태그가 바뀌면 첫 페이지로 이동
-    // };
-
-    // const handleTagSelect = (tag) => {
-    //     setSelectedTag((prevSelected) => {
-    //         if (prevSelected.includes(tag)) {
-    //             return prevSelected.filter(t => t !== tag); // 이미 선택된 태그 제거
-    //         } else {
-    //             return [...prevSelected, tag]; // 새 태그 추가
-    //         }
-    //     });
-    //
-    //     setTags((prevTags) => {
-    //         if (prevTags.includes(tag)) {
-    //             return prevTags.filter(t => t !== tag);
-    //         } else {
-    //             return [...prevTags, tag];
-    //         }
-    //     });
-    //
-    //     setCurrentPage(1); // 태그 변경 시 첫 페이지로 이동
-    // };
-
 
     const handleCategoryChange = (category) => {
         setSelectedCategory(category);
@@ -181,6 +152,8 @@ const BlogMain = () => {
     };
 
     const getPageNumbers = () => {
+        if (!totalPages) return [];
+
         const groupSize = 3;
         const currentGroup = Math.ceil(currentPage / groupSize);
         const startPage = (currentGroup - 1) * groupSize + 1;
@@ -210,7 +183,6 @@ const BlogMain = () => {
         }
     };
 
-    // 글 작성 페이지로 이동
     const goToWritePage = (boardType) => {
         navigate("/board/write", {state: {boardType}});
     };
@@ -223,7 +195,6 @@ const BlogMain = () => {
             >
                 Blog
             </h1>
-            {/* 검색 */}
             <div className="flex justify-end mb-6">
                 <div className="search-bar flex items-center border rounded-full shadow-sm px-4 py-2">
                     <span className="text-sm text-gray-700 mr-2">제목</span>
@@ -242,21 +213,19 @@ const BlogMain = () => {
                     >
                         🔍
                     </button>
-                </div>    
+                </div>
             </div>
-            {/* 태그 필터 */}    
             <div className="tags-total">
                 <div className="tags">
                     <h3 className="tag-title">Tags</h3>
                     <TagFilter
-                        tags={tags}
+                        tags={tags || []}
                         selectedTag={selectedTag}
                         setSelectedTag={handleTagSelect}
                     />
-                </div>                
+                </div>
             </div>
 
-            {/* 게시물 리스트 */}
             <h3 className="posts-title">Posts</h3>
 
             {error ? (
@@ -265,14 +234,14 @@ const BlogMain = () => {
                 </div>
             ) : loading ? (
                 <div className="flex justify-center items-center py-20">Loading...</div>
-            ) : posts.length > 0 ? (
+            ) : Array.isArray(posts) && posts.length > 0 ? (
                 <div className="posts-container">
                     <div className="posts">
-                        {posts.map((post) => (
+                        {posts.map((post, index) => (
                             <div
-                                key={post.id}
+                                key={post?.id || index}
                                 className="post-card"
-                                onClick={() => handlePostClick(post.id)}
+                                onClick={() => post?.id && handlePostClick(post.id)}
                             >
                                 <div className="post-card-image-container">
                                     <img
@@ -304,9 +273,6 @@ const BlogMain = () => {
                 </div>
             )}
 
-
-            {/* 글쓰기 버튼 컨테이너는 항상 존재하고, 버튼만 조건부 표시 */}
-
             <div className="write-button-container">
                 {isAuthenticated && allowedRoles.includes(userRole) && (
                     <button
@@ -320,8 +286,6 @@ const BlogMain = () => {
                     </button>
                 )}
             </div>
-
-            {/* 페이지네이션 */}
 
             {totalPages > 1 && (
                 <div className="pagination flex justify-center space-x-2 text-gray-700">

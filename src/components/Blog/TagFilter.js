@@ -1,28 +1,19 @@
 import React from "react";
 import "../../styles/TagFilter.css";
 
-const TagFilter = ({ tags, selectedTag, setSelectedTag }) => {
+const TagFilter = ({ tags = [], selectedTag, setSelectedTag }) => {  // 기본값 [] 설정
     const handleTagClick = (tag) => {
         if (selectedTag === tag) {
-            setSelectedTag(""); // 동일 태그를 클릭하면 선택 해제
+            setSelectedTag("");
         } else {
-            setSelectedTag(tag); // 다른 태그를 클릭하면 선택
+            setSelectedTag(tag);
         }
     };
 
-    // const handleTagClick = (tag) => {
-    //     setSelectedTag((prevSelected) => {
-    //         if (prevSelected.includes(tag)) {
-    //             return prevSelected.filter(t => t !== tag); // 선택 해제
-    //         } else {
-    //             return [...prevSelected, tag]; // 선택 추가
-    //         }
-    //     });
-    // };
-
+    // tags가 배열인지 확인하고 map 실행
     return (
         <div className="tag-list">
-            {tags.map((tag) => (
+            {Array.isArray(tags) && tags.map((tag) => (
                 <button
                     key={tag}
                     className={`tag-button ${selectedTag === tag ? "active" : ""}`}
