@@ -24,7 +24,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:8080",
+  "proxy": "https://port-0-swlug-back-m769xbg83aa6b434.sel4.cloudtype.app",
   "eslintConfig": {
     "extends": [
       "react-app",
