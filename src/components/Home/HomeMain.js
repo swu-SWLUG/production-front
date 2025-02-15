@@ -24,7 +24,7 @@ const HomeMain = () => {
           <div className="relative" style={{ width: '80%', maxWidth: '700px' }}>
             <ReactPlayer
                 className="swlugPlayer"
-                url={"https://youtu.be/ANyFScpNOW8?si=ADg-wK7WzuC3QXQs"}
+                url={"https://youtu.be/QlCHB_Kw_6Y?si=HVIc4JczFUZIkrQ4"}
                 width='100%'
                 height='315px'
                 playing={true}
