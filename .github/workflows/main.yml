@@ -21,9 +21,9 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.AUTH_TOKEN }} 
         with:
           source-directory: 'output'
-          destination-github-username: swu-SWLUG
+          destination-github-username: SWLUG 
           destination-repository-name: production-front 
-          user-email: ${{ secrets.OFFICIAL_ACCOUNT_EMAIL }}
+          user-email: ${{ secrets.OFFICIAL_ACCOUNT_EMAIL }} 
           commit-message: ${{ github.event.commits[0].message }}
           target-branch: main
       - name: Test get variable exported by push-to-another-repository
