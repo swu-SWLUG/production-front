@@ -7,10 +7,8 @@ import { CKEditor, useCKEditorCloud } from '@ckeditor/ckeditor5-react';
 import UploadAdapter from './UploadAdapter';
 import {useSelector} from "react-redux";
 
-
 const LICENSE_KEY = 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NjgyNjIzOTksImp0aSI6ImQxMWFlMjhjLTRhNGEtNGQ4MC1hNTBmLTA3MTI5NmI5YjE4ZCIsImxpY2Vuc2VkSG9zdHMiOlsiMTI3LjAuMC4xIiwibG9jYWxob3N0IiwiMTkyLjE2OC4qLioiLCIxMC4qLiouKiIsIjE3Mi4qLiouKiIsIioudGVzdCIsIioubG9jYWxob3N0IiwiKi5sb2NhbCJdLCJ1c2FnZUVuZHBvaW50IjoiaHR0cHM6Ly9wcm94eS1ldmVudC5ja2VkaXRvci5jb20iLCJkaXN0cmlidXRpb25DaGFubmVsIjpbImNsb3VkIiwiZHJ1cGFsIl0sImxpY2Vuc2VUeXBlIjoiZGV2ZWxvcG1lbnQiLCJmZWF0dXJlcyI6WyJEUlVQIl0sInZjIjoiZGMyZWIzYjUifQ.bGfz0zMJry9GHH6ANiZ8qqhYMFF94RHXyA0e9FVZLeMYpS1c02VFc4zm-KRJdYR7dgFnuGAvj8VvP9uPoV-Glw';
 
-//확인
 const BlogWrite = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
@@ -19,7 +17,22 @@ const BlogWrite = () => {
 	const userRole = localStorage.getItem("userRole");
 	const { isAuthenticated } = useSelector(state => state.auth);
 	const allowedRoles = ["ROLE_USER", "ROLE_ADMIN"];
+	const MAX_TAGS = 10;
 
+	// 모든 state 선언을 최상단으로 이동
+	const [title, setTitle] = useState(postToEdit?.title || "");
+	const [contents, setContents] = useState(postToEdit?.contents || "");
+	const [category, setCategory] = useState(postToEdit?.category || "");
+	const [tags, setTags] = useState(postToEdit?.tag || []);
+	const [image, setImage] = useState(null);
+	const [uploadedImages, setUploadedImages] = useState(postToEdit?.image || []);
+	const [isLayoutReady, setIsLayoutReady] = useState(false);
+
+	const editorContainerRef = useRef(null);
+	const editorRef = useRef(null);
+	const cloud = useCKEditorCloud({ version: '44.1.0', translations: ['ko'] });
+
+	// 권한 체크
 	useEffect(() => {
 		if (!isAuthenticated || !allowedRoles.includes(userRole)) {
 			alert("접근 권한이 없습니다.");
@@ -28,29 +41,29 @@ const BlogWrite = () => {
 		}
 	}, [isAuthenticated, userRole, navigate]);
 
-	const [tags, setTags] = useState(postToEdit?.tag || []);
-	const [uploadedImages, setUploadedImages] = useState(postToEdit?.image || []);
-	const MAX_TAGS = 10;
+	// 새로고침 경고
+	useEffect(() => {
+		const handleBeforeUnload = (e) => {
+			if (title || contents || tags.length > 0) {
+				e.preventDefault();
+				e.returnValue = '작성 중인 내용이 있습니다. 페이지를 나가시겠습니까?';
+				return e.returnValue;
+			}
+		};
 
-	const [title, setTitle] = useState(postToEdit?.title || "");
-	const [contents, setContents] = useState(postToEdit?.contents || "");
-	const [image, setImage] = useState(null);
+		window.addEventListener('beforeunload', handleBeforeUnload);
+		return () => {
+			window.removeEventListener('beforeunload', handleBeforeUnload);
+		};
+	}, [title, contents, tags]);
 
+	// 레이아웃 준비
+	useEffect(() => {
+		setIsLayoutReady(true);
+		return () => setIsLayoutReady(false);
+	}, []);
 
-	function MyCustomUploadAdapterPlugin(editor) {
-		editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-			return new UploadAdapter(loader, (imageUrl) => {
-				setUploadedImages(prev => {
-					if (!prev.includes(imageUrl)) {
-						return [...prev, imageUrl];
-					}
-					return prev;
-				});
-			});
-		}
-	}
-
-	// boardType 설정 로직 수정
+	// boardType 설정 로직
 	const boardType = useMemo(() => {
 		if (location.state?.boardType) {
 			return location.state.boardType;
@@ -63,13 +76,7 @@ const BlogWrite = () => {
 		return "";
 	}, [location.pathname, location.state?.boardType]);
 
-
-	// 카테고리 초기값 설정 수정
-	const [category, setCategory] = useState(
-		postToEdit?.category || ""
-	);
-
-	// 게시판 옵션 수정 - 값과 텍스트를 명확히 구분
+	// 게시판 옵션
 	const boardOptions = useMemo(() => {
 		if (boardType === "notice") {
 			return [<option value="0" key="0">공지사항</option>];
@@ -85,6 +92,18 @@ const BlogWrite = () => {
 		return [];
 	}, [boardType]);
 
+	function MyCustomUploadAdapterPlugin(editor) {
+		editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+			return new UploadAdapter(loader, (imageUrl) => {
+				setUploadedImages(prev => {
+					if (!prev.includes(imageUrl)) {
+						return [...prev, imageUrl];
+					}
+					return prev;
+				});
+			});
+		}
+	}
 
 	const handleTagInput = (e) => {
 		if ((e.key === 'Enter' || e.key === ',') && e.target.value.trim() !== '') {
@@ -94,17 +113,16 @@ const BlogWrite = () => {
 				return;
 			}
 			if (!tags.includes(newTag)) {
-				setTags((prevTags) => [...prevTags, newTag]);
+				setTags(prevTags => [...prevTags, newTag]);
 			}
 			e.target.value = '';
 		}
 	};
 
 	const handleTagRemove = (tagToRemove) => {
-		setTags((prevTags) => prevTags.filter((tag) => tag !== tagToRemove));
+		setTags(prevTags => prevTags.filter(tag => tag !== tagToRemove));
 	};
 
-	// handleSubmit 함수 수정
 	const handleSubmit = async () => {
 		if (!category) {
 			alert("게시판을 선택해주세요.");
@@ -131,7 +149,7 @@ const BlogWrite = () => {
 				alert("게시물이 등록되었습니다.");
 			}
 
-			navigate(isMyPageEdit ? `/users/mypage` : `/${boardType}`);
+			navigate(isMyPageEdit ? '/users/mypage' : `/${boardType}`);
 			window.scrollTo(0, 0);
 			window.location.reload();
 		} catch (error) {
@@ -139,16 +157,6 @@ const BlogWrite = () => {
 			alert("글 등록/수정에 실패했습니다. 다시 시도해주세요.");
 		}
 	};
-
-	const editorContainerRef = useRef(null);
-	const editorRef = useRef(null);
-	const [isLayoutReady, setIsLayoutReady] = useState(false);
-	const cloud = useCKEditorCloud({ version: '44.1.0', translations: ['ko'] });
-
-	useEffect(() => {
-		setIsLayoutReady(true);
-		return () => setIsLayoutReady(false);
-	}, []);
 
 	const { ClassicEditor, editorConfig } = useMemo(() => {
 		if (cloud.status !== 'success' || !isLayoutReady) {
@@ -291,68 +299,20 @@ const BlogWrite = () => {
 				},
 				heading: {
 					options: [
-						{
-							model: 'paragraph',
-							title: 'Paragraph',
-							class: 'ck-heading_paragraph'
-						},
-						{
-							model: 'heading1',
-							view: 'h1',
-							title: 'Heading 1',
-							class: 'ck-heading_heading1'
-						},
-						{
-							model: 'heading2',
-							view: 'h2',
-							title: 'Heading 2',
-							class: 'ck-heading_heading2'
-						},
-						{
-							model: 'heading3',
-							view: 'h3',
-							title: 'Heading 3',
-							class: 'ck-heading_heading3'
-						},
-						{
-							model: 'heading4',
-							view: 'h4',
-							title: 'Heading 4',
-							class: 'ck-heading_heading4'
-						},
-						{
-							model: 'heading5',
-							view: 'h5',
-							title: 'Heading 5',
-							class: 'ck-heading_heading5'
-						},
-						{
-							model: 'heading6',
-							view: 'h6',
-							title: 'Heading 6',
-							class: 'ck-heading_heading6'
-						}
+						{ model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+						{ model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+						{ model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+						{ model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
+						{ model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' },
+						{ model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5' },
+						{ model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
 					]
 				},
-				// BlogWrite.js의 editorConfig 내 image 설정을 다음과 같이 수정
-
 				image: {
 					resizeOptions: [
-						{
-							name: 'resizeImage:original',
-							value: null,
-							label: '원본 크기'
-						},
-						{
-							name: 'resizeImage:50',
-							value: '50',
-							label: '50%'
-						},
-						{
-							name: 'resizeImage:75',
-							value: '75',
-							label: '75%'
-						}
+						{ name: 'resizeImage:original', value: null, label: '원본 크기' },
+						{ name: 'resizeImage:50', value: '50', label: '50%' },
+						{ name: 'resizeImage:75', value: '75', label: '75%' }
 					],
 					resizeUnit: '%',
 					toolbar: [
@@ -365,11 +325,7 @@ const BlogWrite = () => {
 						'resizeImage'
 					],
 					styles: {
-						options: [
-							'inline',
-							'block',
-							'side'
-						]
+						options: ['inline', 'block', 'side']
 					}
 				},
 				initialData: '',
@@ -424,8 +380,7 @@ const BlogWrite = () => {
 				type="text"
 				placeholder="제목을 입력하세요"
 				value={title}
-				onChange={(e) => setTitle(e.target.value)}
-				className="title-input"
+				onChange={(e) => setTitle(e.target.value)}className="title-input"
 			/>
 
 			<div className="main-container">
@@ -444,12 +399,16 @@ const BlogWrite = () => {
 					</div>
 				</div>
 			</div>
+
 			<div className="tag-input">
 				<div className="tag-list">
 					{tags.map((tag, index) => (
 						<span key={index} className="tag">
                             #{tag}
-							<button className="remove-tag-button" onClick={() => handleTagRemove(tag)}>
+							<button
+								className="remove-tag-button"
+								onClick={() => handleTagRemove(tag)}
+							>
                                 ×
                             </button>
                         </span>
@@ -459,15 +418,18 @@ const BlogWrite = () => {
 							type="text"
 							placeholder="#태그 입력"
 							onKeyDown={handleTagInput}
-							className="tag-input-field"/>
+							className="tag-input-field"
+						/>
 					)}
 				</div>
 			</div>
+
 			<div className="buttons-container">
-				<button className="submit-button" onClick={handleSubmit}>
-					{postToEdit
-						? (isMyPageEdit ? "수정 완료" : "수정 완료")
-						: "완료"}
+				<button
+					className="submit-button"
+					onClick={handleSubmit}
+				>
+					{postToEdit ? (isMyPageEdit ? "수정 완료" : "수정 완료") : "완료"}
 				</button>
 			</div>
 		</div>

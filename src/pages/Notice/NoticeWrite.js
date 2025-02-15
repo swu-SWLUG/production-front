@@ -6,7 +6,6 @@ import UploadAdapter from '../Blog/UploadAdapter';
 import "../../styles/NoticeWrite.css";
 import {useSelector} from "react-redux";
 
-
 const LICENSE_KEY = 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NjgyNjIzOTksImp0aSI6ImQxMWFlMjhjLTRhNGEtNGQ4MC1hNTBmLTA3MTI5NmI5YjE4ZCIsImxpY2Vuc2VkSG9zdHMiOlsiMTI3LjAuMC4xIiwibG9jYWxob3N0IiwiMTkyLjE2OC4qLioiLCIxMC4qLiouKiIsIjE3Mi4qLiouKiIsIioudGVzdCIsIioubG9jYWxob3N0IiwiKi5sb2NhbCJdLCJ1c2FnZUVuZHBvaW50IjoiaHR0cHM6Ly9wcm94eS1ldmVudC5ja2VkaXRvci5jb20iLCJkaXN0cmlidXRpb25DaGFubmVsIjpbImNsb3VkIiwiZHJ1cGFsIl0sImxpY2Vuc2VUeXBlIjoiZGV2ZWxvcG1lbnQiLCJmZWF0dXJlcyI6WyJEUlVQIl0sInZjIjoiZGMyZWIzYjUifQ.bGfz0zMJry9GHH6ANiZ8qqhYMFF94RHXyA0e9FVZLeMYpS1c02VFc4zm-KRJdYR7dgFnuGAvj8VvP9uPoV-Glw';
 
 const NoticeWrite = () => {
@@ -17,14 +16,6 @@ const NoticeWrite = () => {
     const {isAuthenticated} = useSelector(state => state.auth);
     const allowedRoles = ["ROLE_ADMIN"];
 
-    useEffect(() => {
-        if (!isAuthenticated || !allowedRoles.includes(userRole)) {
-            alert("접근 권한이 없습니다.");
-            navigate('/notice');
-            return;
-        }
-    }, [isAuthenticated, userRole, navigate]);
-
     const [title, setTitle] = useState(noticeToEdit?.noticeTitle || '');
     const [contents, setContents] = useState(noticeToEdit?.noticeContents || '');
     const [uploadedImages, setUploadedImages] = useState(noticeToEdit?.imageUrl || []);
@@ -33,6 +24,37 @@ const NoticeWrite = () => {
     const editorContainerRef = useRef(null);
     const editorRef = useRef(null);
     const cloud = useCKEditorCloud({ version: '44.1.0', translations: ['ko'] });
+
+    // 권한 체크
+    useEffect(() => {
+        if (!isAuthenticated || !allowedRoles.includes(userRole)) {
+            alert("접근 권한이 없습니다.");
+            navigate('/notice');
+            return;
+        }
+    }, [isAuthenticated, userRole, navigate]);
+
+    // 새로고침 경고 추가
+    useEffect(() => {
+        const handleBeforeUnload = (e) => {
+            if (title || contents) {
+                e.preventDefault();
+                e.returnValue = '작성 중인 내용이 있습니다. 페이지를 나가시겠습니까?';
+                return e.returnValue;
+            }
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, [title, contents]);
+
+    // 레이아웃 준비
+    useEffect(() => {
+        setIsLayoutReady(true);
+        return () => setIsLayoutReady(false);
+    }, []);
 
     function MyCustomUploadAdapterPlugin(editor) {
         editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
@@ -46,11 +68,6 @@ const NoticeWrite = () => {
             });
         };
     }
-
-    useEffect(() => {
-        setIsLayoutReady(true);
-        return () => setIsLayoutReady(false);
-    }, []);
 
     const handleSubmit = async () => {
         if (!title.trim()) {
@@ -89,7 +106,6 @@ const NoticeWrite = () => {
             alert(error.message);
         }
     };
-
 
     const handleEditorChange = (event, editor) => {
         const data = editor.getData();
