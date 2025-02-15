@@ -14,7 +14,7 @@ const Footer = () => {
     // URL 유효성 검사
     const validUrls = {
       instagram: 'https://www.instagram.com/security_swlug?igsh=ZjJkOWs0eDd3YWJ3',
-      kakao: 'https://www.instagram.com/security_swlug?igsh=ZjJkOWs0eDd3YWJ3',
+      kakao: 'https://open.kakao.com/o/sfB1uJdh',
       email: 'mailto:swu.swlug@gmail.com',
       naver: 'https://cafe.naver.com/swlug'
     };
