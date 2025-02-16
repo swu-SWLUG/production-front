@@ -6,7 +6,7 @@ import UploadAdapter from '../Blog/UploadAdapter';
 import "../../styles/NoticeWrite.css";
 import {useSelector} from "react-redux";
 
-const LICENSE_KEY = LICENSE_KEY;
+const LICENSE_KEY = process.env.REACT_APP_ckEditor_LICENSE_KEY;
 
 const NoticeWrite = () => {
     const navigate = useNavigate();
