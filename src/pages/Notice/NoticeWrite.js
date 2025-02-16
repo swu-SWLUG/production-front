@@ -6,7 +6,7 @@ import UploadAdapter from '../Blog/UploadAdapter';
 import "../../styles/NoticeWrite.css";
 import {useSelector} from "react-redux";
 
-const LICENSE_KEY = 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NjgyNjIzOTksImp0aSI6ImVlZmY1OTQ1LTlmYjYtNDIwYi04YjdlLTNhOGExMTMwNTkzNSIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiXSwiZmVhdHVyZXMiOlsiRFJVUCJdLCJ2YyI6IjRlZjUzYzI0In0.BBlx49dBsvhUbEEe3FwkxTUdHMZXjx1vkAmfJhToHQ1z4iK_frooFflfxWa8W1VZhBeLfZDDCydOp-xTCXCQ_Q'
+const LICENSE_KEY = process.env.LICENSE_KEY;
 
 const NoticeWrite = () => {
     const navigate = useNavigate();
