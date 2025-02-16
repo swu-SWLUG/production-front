@@ -7,7 +7,7 @@ import { CKEditor, useCKEditorCloud } from '@ckeditor/ckeditor5-react';
 import UploadAdapter from './UploadAdapter';
 import {useSelector} from "react-redux";
 
-const LICENSE_KEY = process.env.LICENSE_KEY;
+const LICENSE_KEY = LICENSE_KEY;
 
 const BlogWrite = () => {
 	const navigate = useNavigate();
