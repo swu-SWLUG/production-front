@@ -6,13 +6,7 @@
     },
     {
       "source": "/(.*)",
-      "destination": "index.html",
-      "headers": [
-        {"key":  "Server", "value":  ""},
-        {"key":  "X-Vercel-Id", "value":  ""},
-        {"key":  "Content-Disposition", "value":  ""},
-        {"key":  "Last-Modified", "value":  ""}
-      ]
+      "destination": "index.html"
     }
-  ]
+    ]
 }
