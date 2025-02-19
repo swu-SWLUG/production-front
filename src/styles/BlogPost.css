@@ -82,15 +82,6 @@
     background-color: #ffccbc;
 }
 
-.blog-post img {
-    max-width: 100%;
-    width: auto; /* auto로 변경하여 원본 비율 유지 */
-    height: auto;
-    display: block;
-    margin: 20px auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
 .post-content {
     margin: 40px auto;
 }
@@ -201,20 +192,22 @@
     align-items: center;
 }
 
-
-
 /* CKEditor 내부 이미지 스타일 */
 .post-content img {
-    max-width: 800px !important;
-    width: 100% !important;
-    height: auto !important;
-    margin: 20px auto !important;
+    max-width: 800px;
+    width: 100%;
+    height: auto;
+    margin: 20px auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* 게시글 전체 너비 수정 */
 .blog-post {
     padding: 20px;
-    max-width: 1000px; /* 전체 너비 증가 */
+    max-width: 1000px;
+    /* 전체 너비 증가 */
     margin: 0 auto;
     line-height: 1.6;
 }
@@ -230,4 +223,28 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     transform: translateY(-2px);
     transition: all 0.3s ease;
+}
+
+/* CKEditor 이미지 정렬 스타일 */
+
+/* 왼쪽 정렬 */
+.post-content .image-style-align-left {
+    display: block;
+    margin: 0;
+    text-align: left;
+}
+
+/* 중앙 정렬 */
+.post-content .image-style-align-center {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* 오른쪽 정렬 */
+.post-content .image-style-align-right {
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+    text-align: right;
 }
