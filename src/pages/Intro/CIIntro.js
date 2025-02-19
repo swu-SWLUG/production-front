@@ -7,7 +7,7 @@ const CllIntro = () => {
             <div className="header">
                 <h2>
                     📌 SWLUG 슈러그 기본 로고
-                    <a href="/Logo4.jpeg" download className="download-button">다운로드</a>
+                    <a href="/Logo4.jpeg" download="SWLUG_Logo.jpeg" className="download-button">다운로드</a>
                 </h2>
             </div>
             <div className="logo-section">
@@ -19,7 +19,7 @@ const CllIntro = () => {
             <div className="header">
                 <h2>
                     📌 SWLUG 슈러그 공식 캐릭터
-                    <a href="/sub_logo1.png" download className="download-button">다운로드</a>
+                    <a href="/sub_logo1.png" download="SWLUG_Character.png" className="download-button">다운로드</a>
                 </h2>
             </div>
             <div className="logo-section">
