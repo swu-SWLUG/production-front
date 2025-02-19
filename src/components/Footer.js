@@ -42,7 +42,7 @@ const Footer = () => {
     <footer className="footer bg-black text-white py-6">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-6">
         <div className="social-and-contact text-left">
-          <div className="contact-info relative">
+          <div className="footer-contact-info relative">
             <h3 className="text-lg font-semibold mb-2">Contact Us</h3>
             <p className="text-sm">
               29기 학회장 김수민: {" "}
