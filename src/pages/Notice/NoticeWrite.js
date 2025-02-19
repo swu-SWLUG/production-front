@@ -204,7 +204,6 @@ const NoticeWrite = () => {
                         'outdent',
                         'indent'
                     ],
-                    shouldNotGroupWhenFull: false
                 },
                 plugins: [
                     Autoformat,
@@ -260,41 +259,41 @@ const NoticeWrite = () => {
                     supportAllValues: true
                 },
                 image: {
-                    resizeOptions: [
-                        {
-                            name: 'resizeImage:original',
-                            value: null,
-                            label: '원본 크기'
-                        },
-                        {
-                            name: 'resizeImage:50',
-                            value: '50',
-                            label: '50%'
-                        },
-                        {
-                            name: 'resizeImage:75',
-                            value: '75',
-                            label: '75%'
-                        }
-                    ],
-                    resizeUnit: '%',
-                    toolbar: [
-                        'imageStyle:inline',
-                        'imageStyle:block',
-                        'imageStyle:side',
-                        '|',
-                        'toggleImageCaption',
-                        'imageTextAlternative',
-                        'resizeImage'
-                    ],
-                    styles: {
-                        options: [
-                            'inline',
-                            'block',
-                            'side'
-                        ]
-                    }
-                },
+					resizeOptions: [
+						{
+							name: 'resizeImage:original',
+							value: null,
+							label: '원본 크기'
+						},
+						{
+							name: 'resizeImage:50',
+							value: '50',
+							label: '50%'
+						},
+						{
+							name: 'resizeImage:75',
+							value: '75',
+							label: '75%'
+						}
+					],
+					resizeUnit: '%',
+					toolbar: [
+						'imageStyle:alignLeft',
+						'imageStyle:alignCenter',
+						'imageStyle:alignRight',
+						'|',
+						'toggleImageCaption',
+						'imageTextAlternative',
+						'resizeImage'
+					],
+					styles: {
+						options: [
+							'alignLeft',
+							'alignCenter',
+							'alignRight'
+						]
+					}
+				},
                 licenseKey: LICENSE_KEY,
                 link: {
                     addTargetToExternalLinks: true,

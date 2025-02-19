@@ -241,7 +241,6 @@ const BlogWrite = () => {
 						'outdent',
 						'indent'
 					],
-					shouldNotGroupWhenFull: false
 				},
 				plugins: [
 					Autoformat,
@@ -310,22 +309,38 @@ const BlogWrite = () => {
 				},
 				image: {
 					resizeOptions: [
-						{ name: 'resizeImage:original', value: null, label: '원본 크기' },
-						{ name: 'resizeImage:50', value: '50', label: '50%' },
-						{ name: 'resizeImage:75', value: '75', label: '75%' }
+						{
+							name: 'resizeImage:original',
+							value: null,
+							label: '원본 크기'
+						},
+						{
+							name: 'resizeImage:50',
+							value: '50',
+							label: '50%'
+						},
+						{
+							name: 'resizeImage:75',
+							value: '75',
+							label: '75%'
+						}
 					],
 					resizeUnit: '%',
 					toolbar: [
-						'imageStyle:inline',
-						'imageStyle:block',
-						'imageStyle:side',
+						'imageStyle:alignLeft',
+						'imageStyle:alignCenter',
+						'imageStyle:alignRight',
 						'|',
 						'toggleImageCaption',
 						'imageTextAlternative',
 						'resizeImage'
 					],
 					styles: {
-						options: ['inline', 'block', 'side']
+						options: [
+							'alignLeft',
+							'alignCenter',
+							'alignRight'
+						]
 					}
 				},
 				initialData: '',

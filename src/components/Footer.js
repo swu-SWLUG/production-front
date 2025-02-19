@@ -45,7 +45,7 @@ const Footer = () => {
           <div className="contact-info relative">
             <h3 className="text-lg font-semibold mb-2">Contact Us</h3>
             <p className="text-sm">
-              26기 학회장_김수민: {" "}
+              29기 학회장 김수민: {" "}
               <button
                 onClick={() => handleCopyEmail('suming@swu.ac.kr')} 
                 className="hover:underline focus:outline-none"
@@ -55,7 +55,7 @@ const Footer = () => {
               </button>
             </p>
             <p className="text-sm">
-              26기 부학회장_김도연: {" "}
+              29기 부학회장 김도연: {" "}
               <button
                 onClick={() => handleCopyEmail('yeando@swu.ac.kr')}
                 className="hover:underline focus:outline-none"
