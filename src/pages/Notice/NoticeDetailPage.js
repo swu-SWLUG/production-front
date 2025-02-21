@@ -22,19 +22,9 @@ const NoticeDetailPage = () => {
     const handleDelete = async () => {
         if (window.confirm("정말 삭제하시겠습니까?")) {
             try {
-                const response = await axios.post("/api/notice/delete", { id: noticeId });
-
-                if (response.status === 401) {
-                    alert("삭제 권한이 없습니다.");
-                    return;
-                }
-
-                if (response.data?.redirect) {
-                    alert("게시물이 삭제되었습니다.");
-                    navigate("/notice");
-                } else {
-                    throw new Error("Unexpected response format");
-                }
+                await axios.post("/api/notice/delete", { id: noticeId });
+                alert("게시물이 삭제되었습니다.");
+                navigate("/notice");
             } catch (error) {
                 console.error("게시물 삭제 실패:", error);
                 if (error.response?.status === 401) {
