@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../styles/ResetPassword.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const PASSWORD_REGEX = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{10,}$/;
 
@@ -11,6 +12,10 @@ function ResetPassword() {
   const navigate = useNavigate();
   const isFromMyPage = location.state?.fromMyPage;
   const userInfo = location.state?.userInfo;
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
+  const toggleConfirmPasswordVisibility = () => setShowConfirmPassword(!showConfirmPassword);
 
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -384,13 +389,18 @@ function ResetPassword() {
             <label>새로운 비밀번호</label>
             <div className="input-container">
               <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   name="newPw"
                   value={formData.newPw}
                   onChange={handleChange}
                   placeholder="새 비밀번호 입력"
                   disabled={!emailVerified}
               />
+              <span className="password-toggle" 
+                    onClick={emailVerified ? togglePasswordVisibility : undefined}
+              >
+                {showPassword ? <FaEye /> : <FaEyeSlash />}
+              </span>
             </div>
           </div>
           {(error.password || success.password) && (
@@ -406,13 +416,18 @@ function ResetPassword() {
             <label>비밀번호 확인</label>
             <div className="input-container">
               <input
-                  type="password"
+                  type={showConfirmPassword ? "text" : "password"}
                   name="confirmPw"
                   value={formData.confirmPw}
                   onChange={handleChange}
                   placeholder="비밀번호 확인 입력"
                   disabled={!emailVerified}
               />
+              <span className="password-toggle" 
+                    onClick={emailVerified ? toggleConfirmPasswordVisibility : undefined}
+              >
+                {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
+              </span>
             </div>
           </div>
           {(error.confirmPassword || success.confirmPassword) && (

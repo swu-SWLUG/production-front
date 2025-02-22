@@ -1,5 +1,5 @@
 .login-container {
-  max-width: 600px;
+  min-width: 550px;
   margin: 50px auto;
   border: 1px solid #6A6A6A;
   border-radius: 5px;
@@ -19,17 +19,6 @@
   width: 100%;
   max-width: 500px;
   margin: 0 auto;
-}
-
-.info-form_input {
-  width: 100%;
-  margin: 10px 0;
-  padding: 12px 20px;
-  border: 1px solid #6A6A6A;
-  border-radius: 20px;
-  color: #202123;
-  font-size: 16px;
-  transition: all 0.3s;
 }
 
 .info-form_input:focus {
@@ -85,4 +74,37 @@
 
 .btn_next:not(:disabled):hover {
   background-color: #000000;
+}
+
+/* 아이디 & 비밀번호 입력 필드 스타일 */
+.info-form_input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px 40px 10px 15px;
+  border: 1px solid #6A6A6A;
+  border-radius: 20px;
+  color: #202123;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+/* 부모 요소를 relative로 설정 */
+.password-input-container {
+  position: relative;
+  width: 100%;
+}
+
+/* 비밀번호 입력 필드 아이콘 */
+.password-toggle {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #777;
+  font-size: 18px;
+}
+
+.password-toggle:hover {
+  color: #000;
 }

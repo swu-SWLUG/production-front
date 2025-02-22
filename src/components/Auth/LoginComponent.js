@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { loginSuccess, loginFailure, setLoading } from '../../slices/authSlice';
 import "../../styles/LoginComponent.css";
 import "../../styles/common.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; 
 
-//
 
 function LoginComponent() {
   const dispatch = useDispatch();
@@ -15,6 +15,8 @@ function LoginComponent() {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [isFormValid, setIsFormValid] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
   //로그인 수정
   useEffect(() => {
@@ -101,13 +103,18 @@ function LoginComponent() {
               onChange={(e) => setId(e.target.value)}
               className="info-form_input"
           />
-          <input
-              type="password"
-              placeholder=" 비밀번호를 입력해주세요"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="info-form_input"
-          />
+          <div className="password-input-container">
+            <input
+                type={showPassword ? "text" : "password"}
+                placeholder=" 비밀번호를 입력해주세요"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="info-form_input"
+            />
+            <span className="password-toggle" onClick={togglePasswordVisibility}>
+                {showPassword ? <FaEye /> : <FaEyeSlash />}
+            </span>
+        </div>
           {error && <p className="error-message">{error}</p>}
           <div className="links">
             <a href="/users/update">비밀번호 재설정</a> | <a href="/users/join">회원가입</a>
