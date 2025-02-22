@@ -39,7 +39,12 @@ const Footer = () => {
   
 
   return (
-    <footer className="footer bg-black text-white py-6">
+    <footer className="footer bg-black text-white py-6 relative">
+      {copyStatus.message && (
+        <div className={`absolute left-1/2 bottom-20 transform -translate-x-1/2 bg-white text-gray-800 px-3 py-1 rounded shadow-lg transition-opacity duration-200 ${copyStatus.copied ? 'opacity-100' : 'opacity-0'}`}>
+          {copyStatus.message}
+        </div>
+      )}
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-6">
         <div className="social-and-contact text-left">
           <div className="footer-contact-info relative">
@@ -63,11 +68,6 @@ const Footer = () => {
                 yeando@swu.ac.kr
               </button>
             </p>
-            {copyStatus.message && (
-              <div className={`absolute -right-40 top-10 bg-gray-800 text-white px-3 py-1 rounded shadow-lg transition-opacity duration-200 ${copyStatus.copied ? 'opacity-100' : 'opacity-0'}`}>
-                {copyStatus.message}
-              </div>
-            )}
           </div>
 
           <div className="social-icons flex space-x-4 mt-4">
