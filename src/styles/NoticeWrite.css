@@ -81,6 +81,7 @@
     font-family: 'Lato';
     line-height: 1.6;
     word-break: break-word;
+    margin-top: 0;
 }
 
 .ck-editor__editable {

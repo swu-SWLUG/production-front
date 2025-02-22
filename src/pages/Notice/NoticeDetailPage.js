@@ -112,7 +112,7 @@ const NoticeDetailPage = () => {
                 </div>
             )}
             <div
-                className="notice-content"
+                className="ck-content"
                 dangerouslySetInnerHTML={{__html: notice.noticeContents}}
             />
 

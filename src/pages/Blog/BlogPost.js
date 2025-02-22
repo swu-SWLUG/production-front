@@ -142,7 +142,7 @@ const BlogPost = () => {
                     </div>
                 )}
             </div>
-            <div className="post-content" dangerouslySetInnerHTML={{__html: post.contents}}/>
+            <div className="ck-content" dangerouslySetInnerHTML={{__html: post.contents}}/>
 
             <div className="post-tags">
                 {post.tag && post.tag.map((tag, index) => (

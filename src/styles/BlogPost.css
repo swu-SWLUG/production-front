@@ -1,6 +1,6 @@
 .blog-post {
     padding: 20px;
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
     line-height: 1.6;
 }
@@ -82,43 +82,45 @@
     background-color: #ffccbc;
 }
 
-.post-content {
+.ck-content {
     margin: 40px auto;
-}
-
-.post-content p {
-    margin-top: 10px;
-    color: #000000;
-    font-size: 16px;
     text-align: justify;
 }
 
-.post-content h1 {
-    font-size: 2.5em;
-    font-weight: bold;
+.ck-content p {
+    margin-top: 10px;
+    color: #000000;
+    font-size: 16px;
 }
 
-.post-content h2 {
+.ck-content h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.ck-content h2 {
     font-size: 2em;
     font-weight: bold;
 }
 
-.post-content h3 {
+.ck-content h3 {
     font-size: 1.75em;
     font-weight: bold;
 }
 
-.post-content h4 {
+.ck-content h4 {
     font-size: 1.5em;
     font-weight: bold;
 }
 
-.post-content h5 {
+.ck-content h5 {
     font-size: 1.25em;
     font-weight: bold;
 }
 
-.post-content h6 {
+.ck-content h6 {
     font-size: 1em;
     font-weight: bold;
 }
@@ -193,7 +195,7 @@
 }
 
 /* CKEditor 내부 이미지 스타일 */
-.post-content img {
+.ck-content img {
     max-width: 800px;
     width: 100%;
     height: auto;
@@ -203,17 +205,8 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* 게시글 전체 너비 수정 */
-.blog-post {
-    padding: 20px;
-    max-width: 1000px;
-    /* 전체 너비 증가 */
-    margin: 0 auto;
-    line-height: 1.6;
-}
-
 /* CKEditor 내용물 스타일 */
-.post-content {
+.ck-content {
     margin: 40px auto;
     width: 100%;
 }
@@ -228,23 +221,27 @@
 /* CKEditor 이미지 정렬 스타일 */
 
 /* 왼쪽 정렬 */
-.post-content .image-style-align-left {
+.ck-content .image-style-align-left {
     display: block;
     margin: 0;
     text-align: left;
 }
 
 /* 중앙 정렬 */
-.post-content .image-style-align-center {
+.ck-content .image-style-align-center {
     display: block;
     margin: 0 auto;
     text-align: center;
 }
 
 /* 오른쪽 정렬 */
-.post-content .image-style-align-right {
+.ck-content .image-style-align-right {
     display: block;
     margin-left: auto;
     margin-right: 0;
     text-align: right;
+}
+
+.ck-content ol {
+    padding-left: 20px;
 }

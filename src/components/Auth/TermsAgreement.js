@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import "../../styles/TermsAgreement.css";
 import "../../styles/common.css";
 import PrevNextButtons from "../../components/Auth/PrevNextButtons";
@@ -7,6 +7,7 @@ function TermsAgreement({ onNext, onPrev }) {
   const [allCheck, setAllCheck] = useState(false);
   const [firstCheck, setFirstCheck] = useState(false);
   const [secondCheck, setSecondCheck] = useState(false);
+  const alertShown = useRef(false);
 
   //약관
   const allBtnEvent = () => {
@@ -25,8 +26,11 @@ function TermsAgreement({ onNext, onPrev }) {
   };
 
   useEffect(() => {
-    alert('본 서비스는 학회원만 가입할 수 있습니다.\n학회원이 아닌 경우 가입이 제한될 수 있습니다.');
-  }, []);
+    if (!alertShown.current) {
+        alert('본 서비스는 학회원만 가입할 수 있습니다.\n학회원이 아닌 경우 가입이 제한될 수 있습니다.');
+        alertShown.current = true;
+    }
+}, []);
 
   useEffect(() => {
     setAllCheck(firstCheck && secondCheck);
