@@ -2,9 +2,9 @@
 
 
 
-## ✨ ### Introduce:
+## ✨ Introduce:
 
----
+
 
 **SWLUG**는 서울여자대학교 정보보호학과 소속 소학회로 학부생이 중심이 되어 운영하는 학술 동아리입니다.
 
@@ -29,9 +29,9 @@ The **SWLUG Web Application** was developed for the following reasons:
 2. To create a platform where outsiders interested in SWLUG can easily access information.
 3. To offer a space where members can practically apply the web hacking and management security knowledge they have learned within SWLUG.
 
-## ✨ ### Development Enviroment:
+## ✨ Development Enviroment:
 
----
+
 
 ✅ Front-End: React
 
@@ -49,9 +49,9 @@ The **SWLUG Web Application** was developed for the following reasons:
 
 ✅ Database Deployment Tool: Oracle Cloud
 
-## ✨ ### About Out Development Team:
+## ✨ About Out Development Team:
 
----
+
 
 #### [Minji Kim](https://github.com/mnzy412) 
 
@@ -105,9 +105,9 @@ The **SWLUG Web Application** was developed for the following reasons:
 
 ✅ Writing Privacy Policy
 
-## ✨ ### Contact Us:
+## ✨ Contact Us:
 
----
+
 
 ✉️ swu.swlug.gmail.com
 
