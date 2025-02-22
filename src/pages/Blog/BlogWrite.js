@@ -175,7 +175,6 @@ const BlogWrite = () => {
 			Essentials,
 			FontBackgroundColor,
 			FontColor,
-			FontFamily,
 			FontSize,
 			Heading,
 			ImageBlock,
@@ -195,7 +194,6 @@ const BlogWrite = () => {
 			LinkImage,
 			List,
 			ListProperties,
-			MediaEmbed,
 			Paragraph,
 			PasteFromOffice,
 			SimpleUploadAdapter,
@@ -219,7 +217,6 @@ const BlogWrite = () => {
 						'heading',
 						'|',
 						'fontSize',
-						'fontFamily',
 						'fontColor',
 						'fontBackgroundColor',
 						'|',
@@ -231,7 +228,6 @@ const BlogWrite = () => {
 						'|',
 						'link',
 						'insertImage',
-						'mediaEmbed',
 						'insertTable',
 						'blockQuote',
 						'|',
@@ -253,7 +249,6 @@ const BlogWrite = () => {
 					Essentials,
 					FontBackgroundColor,
 					FontColor,
-					FontFamily,
 					FontSize,
 					Heading,
 					ImageBlock,
@@ -273,7 +268,6 @@ const BlogWrite = () => {
 					LinkImage,
 					List,
 					ListProperties,
-					MediaEmbed,
 					Paragraph,
 					PasteFromOffice,
 					SimpleUploadAdapter,
@@ -289,9 +283,6 @@ const BlogWrite = () => {
 					Underline,
 					MyCustomUploadAdapterPlugin
 				],
-				fontFamily: {
-					supportAllValues: true
-				},
 				fontSize: {
 					options: [10, 12, 14, 'default', 18, 20, 22],
 					supportAllValues: true

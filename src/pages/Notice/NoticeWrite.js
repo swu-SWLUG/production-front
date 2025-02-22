@@ -138,7 +138,6 @@ const NoticeWrite = () => {
             Essentials,
             FontBackgroundColor,
             FontColor,
-            FontFamily,
             FontSize,
             Heading,
             ImageBlock,
@@ -158,7 +157,6 @@ const NoticeWrite = () => {
             LinkImage,
             List,
             ListProperties,
-            MediaEmbed,
             Paragraph,
             PasteFromOffice,
             SimpleUploadAdapter,
@@ -182,7 +180,6 @@ const NoticeWrite = () => {
                         'heading',
                         '|',
                         'fontSize',
-                        'fontFamily',
                         'fontColor',
                         'fontBackgroundColor',
                         '|',
@@ -194,7 +191,6 @@ const NoticeWrite = () => {
                         '|',
                         'link',
                         'insertImage',
-                        'mediaEmbed',
                         'insertTable',
                         'blockQuote',
                         '|',
@@ -215,7 +211,6 @@ const NoticeWrite = () => {
                     Essentials,
                     FontBackgroundColor,
                     FontColor,
-                    FontFamily,
                     FontSize,
                     Heading,
                     ImageBlock,
@@ -235,7 +230,6 @@ const NoticeWrite = () => {
                     LinkImage,
                     List,
                     ListProperties,
-                    MediaEmbed,
                     Paragraph,
                     PasteFromOffice,
                     SimpleUploadAdapter,
@@ -251,9 +245,6 @@ const NoticeWrite = () => {
                     Underline,
                     MyCustomUploadAdapterPlugin
                 ],
-                fontFamily: {
-                    supportAllValues: true
-                },
                 fontSize: {
                     options: [10, 12, 14, 'default', 18, 20, 22],
                     supportAllValues: true
