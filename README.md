@@ -1,74 +1,116 @@
-<<<<<<< HEAD
-# Getting Started with Create React App
+# SWLUG Web Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+## ✨ ### Introduce:
 
-In the project directory, you can run:
+---
 
-### `npm start`
+**SWLUG**는 서울여자대학교 정보보호학과 소속 소학회로 학부생이 중심이 되어 운영하는 학술 동아리입니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1999년도에 개설된 이래 꾸준히 정보보호를 주제로 학습 및 다양한 활동을 수행하고 있습니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+소학회 창립 당시 리눅스에 대한 전반적인 지식 습득과 네트워크 형성, 스터디 및 자격증 취득을 목표로 활동을 지속해왔으며, 현재는 웹 해킹, 네트워크 보안, 디지털 포렌식, 리버싱, 시스템 보안, 클라우드 보안과 인공지능 보안, 개인정보보호 등 다양한 분야를 기반으로 활동하고 있습니다.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**SWLUG Web Application**은 하기와 같은 이유로 개발되었습니다.
 
-### `npm run build`
+1. SWLUG 회원들이 활동한 내용을 자유롭게 공유할 수 있는 공간 마련
+2. SWLUG에 관심 있는 외부인들이 쉽게 정보를 얻을 수 있는 공간 마련
+3. SWLUG 내에서 배운 웹 해킹 지식 및 관리 보안 지식을 실전처럼 경험해볼 수 있는 공간 마련
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**SWLUG** is a student-led academic club affiliated with the Department of Information Security at Seoul Women's University. Established in 1999, the club has continuously focused on learning and engaging in various activities related to information security.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Since its founding, the club's primary goals have been to acquire comprehensive knowledge about Linux, build networks, conduct study sessions, and obtain certifications. Today, SWLUG covers a wide range of fields including web hacking, network security, digital forensics, reverse engineering, system security, cloud security, AI security, and personal Information protection.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The **SWLUG Web Application** was developed for the following reasons:
 
-### `npm run eject`
+1. To provide a space where SWLUG members can freely share their activities.
+2. To create a platform where outsiders interested in SWLUG can easily access information.
+3. To offer a space where members can practically apply the web hacking and management security knowledge they have learned within SWLUG.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## ✨ ### Development Enviroment:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+✅ Front-End: React
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+✅ Back-End: Spring Boot
 
-## Learn More
+✅ Database: MySQL, MongoDB
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+✅ Collaborative Software: Github, Notion, Discord
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+✅ Code Editor: IntellJ
 
-### Code Splitting
+✅ Front-End Deployment Tool: Vercel
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+✅ Back-End Deployment Tool: CloudType
 
-### Analyzing the Bundle Size
+✅ Database Deployment Tool: Oracle Cloud
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## ✨ ### About Out Development Team:
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### [Minji Kim](https://github.com/mnzy412) 
 
-### Advanced Configuration
+✅ Project Manager
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+✅ Front-End / Back-End / Maintenance Team Member
 
-### Deployment
+✅ Website Development / Design
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+✅ Database Construction
 
-### `npm run build` fails to minify
+#### [Songha Lee](https://github.com/Lee-Song-Ha)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-=======
-# Front
->>>>>>> 4bd9eeeed42cac9683f264a3b610937a8c937bf0
+✅ Back-End Team Leader / Maintenance Team Leader
+
+✅ Website Development / Design
+
+✅ Database Construction
+
+#### [Seongmin Lee](https://github.com/ssungg)
+
+✅ Front-End Team Leader
+
+✅ Website Development
+
+✅ Maintenance  Team Member
+
+#### [Yerin Shin](https://github.com/YEERRIn)
+
+✅ Database Team Leader
+
+✅ Back-End / Maintenance Team Member
+
+✅ Website Development / Design
+
+✅ Database Construction
+
+#### [Seeun Kim](https://github.com/tigerdemon5)
+
+✅ Maintenance Deputy leader
+
+✅ Back-End Team Member
+
+✅ Website Development
+
+#### [Heeyun Heo](https://github.com/PBLwebScanner/SWU_CANNER#heeyun-heo)
+
+✅ Privacy Team Leader
+
+✅ Website Design
+
+✅ Writing Privacy Policy
+
+## ✨ ### Contact Us:
+
+---
+
+✉️ swu.swlug.gmail.com
+
+⭐️ @security_swlug
+
+🌐 [swlug.com](http://www.swlug.com)
