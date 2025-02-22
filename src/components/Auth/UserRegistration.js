@@ -298,7 +298,7 @@ const UserRegistration = ({ onNext, onPrev }) => {
                           className="info-form_input"
                       />
                       <span className="password-toggle" onClick={togglePasswordVisibility}>
-                          {showPassword ? <FaEyeSlash /> : <FaEye />}
+                          {showPassword ? <FaEye /> : <FaEyeSlash />}
                       </span>
                   </div>
               </div>
@@ -320,7 +320,7 @@ const UserRegistration = ({ onNext, onPrev }) => {
                           className="info-form_input"
                       />
                       <span className="password-toggle" onClick={toggleConfirmPasswordVisibility}>
-                          {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                          {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
                       </span>
                   </div>
               </div>

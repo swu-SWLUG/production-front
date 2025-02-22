@@ -30,7 +30,6 @@
     align-items: center;
     white-space: nowrap;
     /* 각 단계별 텍스트도 줄바꿈 방지 */
-
 }
 
 .form_step::after {
@@ -40,8 +39,6 @@
     background-color: #6A6A6A;
     margin-left: 30px;
     margin-right: 30px;
-
-
 }
 
 .form_step:last-child::after {
@@ -51,15 +48,12 @@
 .current {
     font-weight: bold;
     color: #000;
-
-
 }
 
 .info-text {
     padding-bottom: 10px;
     color: #666;
     font-size: 16px;
-
 }
 
 .form-field {
@@ -78,14 +72,12 @@
     margin-right: 10px;
     flex-shrink: 0;
     font-size: 16px;
-
 }
 
 .input-container {
     position: relative;
     flex-grow: 1;
     width: 100%;
-
 }
 
 .info-form_input {
@@ -234,29 +226,32 @@
 
 /* 비밀번호 입력 필드 전용 컨테이너 */
 .password-input-container {
-    display: flex;
-    align-items: center;
     position: relative;
+    flex-grow: 1;
     width: 100%;
-    max-width: 350px;
 }
 
 .password-input-container input {
-    width: 100%;
-    /* 다른 입력 필드와 동일한 너비 */
-    padding-right: 35px;
-    /* 아이콘 공간 확보 */
+    width: 350px;
+    margin-left: 15px;
+    padding: 10px 40px 10px 15px;
+    /* 오른쪽 패딩 추가 */
+    border: 1px solid #6a6a6a;
+    border-radius: 20px;
+    font-size: 16px;
+    transition: all 0.3s;
 }
 
 /* 눈 아이콘 (비밀번호 표시/숨기기 버튼) */
 .password-toggle {
     position: absolute;
-    right: 10px;
+    right: 60px;
+    /* 입력창 안쪽으로 이동 */
     top: 50%;
-    /* 세로 정렬 조정 */
     transform: translateY(-50%);
     cursor: pointer;
     color: #777;
+    font-size: 18px;
 }
 
 .password-toggle:hover {
