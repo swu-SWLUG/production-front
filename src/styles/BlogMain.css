@@ -11,6 +11,10 @@
     margin-bottom: 40px;
 }
 
+.search-bar span {
+    white-space: nowrap;
+}
+
 .search-bar {
     display: flex;
     align-items: center;
@@ -20,6 +24,8 @@
     width: 300px;
     height: 40px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    /* ✅ 버튼을 내부에서 위치 조정 가능하게 함 */
 }
 
 .search-bar input {
@@ -28,6 +34,8 @@
     flex: 1;
     font-size: 14px;
     background: transparent;
+    padding-right: 35px;
+    /* ✅ 버튼이 겹치지 않도록 우측 패딩 추가 */
 }
 
 .search-bar button {
@@ -35,14 +43,37 @@
     background: transparent;
     cursor: pointer;
     font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: #444CE0;
+    position: absolute;
+    /* ✅ 오른쪽 끝에 고정 */
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .search-bar button:hover {
     color: #222;
+}
+
+@media screen and (max-width: 480px) {
+    .search-bar {
+        width: 250px;
+        height: 32px;
+        padding: 3px 6px;
+    }
+
+    .search-bar input {
+        font-size: 11px;
+    }
+
+    .search-bar button {
+        font-size: 13px;
+    }
+
+    .search-bar span {
+        font-weight: normal;
+        font-size: 12px;
+    }
 }
 
 .posts-title {
