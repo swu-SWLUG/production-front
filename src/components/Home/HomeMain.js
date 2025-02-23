@@ -18,10 +18,10 @@ const HomeMain = () => {
   return (
     <div>
       {/* 메인 콘텐츠 */}
-      <div className="container mx-auto px-4 py-12 flex flex-col lg:flex-row items-center">
+      <div className="main-container mx-auto px-4 py-12 flex flex-col lg:flex-row items-center">
         {/* Left: YouTube Video */}
         <div className="w-full lg:w-1/2 mb-8 lg:mb-0 flex justify-center">
-          <div className="relative" style={{ width: '80%', maxWidth: '700px' }}>
+          <div className="youtube-container relative">
             <ReactPlayer
                 className="swlugPlayer"
                 url={"https://youtu.be/QlCHB_Kw_6Y?si=HVIc4JczFUZIkrQ4"}

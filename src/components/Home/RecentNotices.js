@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import "../../styles/Notice.css"
 
 const RecentNotices = ({ data }) => {
     const noticesList = data;

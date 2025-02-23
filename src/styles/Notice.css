@@ -1,59 +1,13 @@
-.notice-list-container {
-  width: 100%;
-  margin: 0 auto;
-  margin-bottom: 1rem; /* 추가 */
-  overflow-x: auto;
-  outline: 2px dashed red;
-}
-
 .search-bar {
-  width: 300px; /* 너비 증가 */
+  width: 300px;
+  /* 너비 증가 */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
 }
-
-table {
-  border-spacing: 0;
-  border-collapse: collapse;
-  outline: 2px dashed green;
-  width: 100%;
-  margin-bottom: 1rem; /* 추가 */
-}
-
-thead th {
-  font-size: 16px;
-  font-weight: 600;
-  padding: 12px 8px;
-  background-color: #f3f3f3;
-  text-align: left;
-  outline: 2px dashed blue;
-}
-
-tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
-  outline: 2px dashed purple;
-}
-
-
-tbody tr:nth-child(odd) {
-  background-color: #ffffff;
-  outline: 2px dashed orange;
-}
-
-td {
-  font-size: 14px;
-  padding: 12px 8px;
-  border: 1px solid #ddd;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-
 
 /* 페이지네이션 여백 수정 */
 .pagination {
-  margin-top: 1rem !important; /* !important 추가 */
+  margin-top: 1rem !important;
+  /* !important 추가 */
   display: flex;
   justify-content: center;
   gap: 1rem;
@@ -91,3 +45,40 @@ td {
   font-size: 26px;
 }
 
+@media screen and (max-width: 768px) {
+
+  .notice-header div:nth-child(3),
+  /* 작성자 숨김 */
+  .notice-item div:nth-child(3) {
+    display: none;
+  }
+
+  .notice-header div:nth-child(2),
+  .notice-item div:nth-child(2) {
+    width: 40%;
+  }
+
+  .notice-header div:nth-child(1),
+  .notice-item div:nth-child(1) {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+
+  .notice-header div:nth-child(2),
+  /* 작성일 숨김 */
+  .notice-item div:nth-child(2),
+  .notice-header div:nth-child(3),
+  /* 작성자 숨김 */
+  .notice-item div:nth-child(3) {
+    display: none;
+  }
+
+  .notice-header div:nth-child(1),
+  .notice-item div:nth-child(1) {
+    width: 100%;
+    text-align: left;
+    padding-left: 12px;
+  }
+}

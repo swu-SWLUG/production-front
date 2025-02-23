@@ -1,5 +1,5 @@
 /* 디버깅용 레이아웃 표시 */
-.container {
+.main-container {
   padding-bottom: 30px;
   padding-top: 30px;
 }
@@ -48,4 +48,27 @@
 
 .activity-card:hover span {
   display: none;
+}
+
+.youtube-container {
+  width: 80%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 480px) {
+  .main-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .youtube-container {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .text-container {
+    margin-top: 15px;
+  }
 }
