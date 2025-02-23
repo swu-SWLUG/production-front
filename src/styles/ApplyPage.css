@@ -237,7 +237,6 @@
   font-size: 18px;
 }
 
-/* ✅ 태블릿 (768px 이하) */
 @media screen and (max-width: 768px) {
   .apply-title {
     font-size: 20px;
@@ -278,7 +277,6 @@
   }
 }
 
-/* ✅ 모바일 (480px 이하) */
 @media screen and (max-width: 480px) {
   .apply-page {
     padding: 1rem;
@@ -286,6 +284,10 @@
 
   .apply-title {
     font-size: 18px;
+  }
+
+  .apply-logo {
+    width: 200px;
   }
 
   .apply-buttons {
@@ -340,11 +342,15 @@
   }
 
   .info-text {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .info-list {
     font-size: 13px;
+  }
+
+  .info-list li {
+    margin: 0;
   }
 
   .divider {
