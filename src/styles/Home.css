@@ -1,9 +1,7 @@
-
-
 /* 디버깅용 레이아웃 표시 */
 .container {
-   padding-bottom: 30px;
-   padding-top: 30px;
+  padding-bottom: 30px;
+  padding-top: 30px;
 }
 
 .grid {
@@ -17,7 +15,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
- /* border: 2px solid #0000ff;  /* 파란색 실선으로 카드 영역 표시 */
+  /* border: 2px solid #0000ff;  /* 파란색 실선으로 카드 영역 표시 */
   border-radius: 8px;
   height: 250px;
   text-decoration: none;
@@ -44,19 +42,10 @@
   font-size: 1.25rem;
   font-weight: bold;
   color: #333;
-  padding: 5px;  /* 텍스트 영역을 더 잘 보이게 하기 위한 패딩 추가 */
+  padding: 5px;
+  /* 텍스트 영역을 더 잘 보이게 하기 위한 패딩 추가 */
 }
 
 .activity-card:hover span {
   display: none;
 }
-
-/*
-.flex {
-  border: 1px dashed #444CE0;
-}
-
-.text-center {
-  border: 1px dotted #666;
-}
- */
