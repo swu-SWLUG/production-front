@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout, loginSuccess } from '../slices/authSlice';
 import axios from 'axios';
+import "../styles/Header.css"
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -76,7 +77,7 @@ const Header = () => {
             </a>
           </div>
           <nav className="flex-1">
-            <ul className="flex justify-center items-center space-x-8 text-lg font-medium text-gray-700" style={{ marginLeft: "0px" }}>
+            <ul className="flex justify-center items-center md:space-x-8 text-lg font-medium text-gray-700" style={{ marginLeft: "0px" }}>
               <li>
                 <a href="/intro" className={`hover:text-blue-600 ${isCurrentPath('/intro') ? 'font-bold' : ''}`}>
                   소개

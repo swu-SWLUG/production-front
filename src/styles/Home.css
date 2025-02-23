@@ -1,9 +1,7 @@
-
-
 /* 디버깅용 레이아웃 표시 */
-.container {
-   padding-bottom: 30px;
-   padding-top: 30px;
+.main-container {
+  padding-bottom: 30px;
+  padding-top: 30px;
 }
 
 .grid {
@@ -17,7 +15,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
- /* border: 2px solid #0000ff;  /* 파란색 실선으로 카드 영역 표시 */
+  /* border: 2px solid #0000ff;  /* 파란색 실선으로 카드 영역 표시 */
   border-radius: 8px;
   height: 250px;
   text-decoration: none;
@@ -44,19 +42,50 @@
   font-size: 1.25rem;
   font-weight: bold;
   color: #333;
-  padding: 5px;  /* 텍스트 영역을 더 잘 보이게 하기 위한 패딩 추가 */
+  padding: 5px;
+  /* 텍스트 영역을 더 잘 보이게 하기 위한 패딩 추가 */
 }
 
 .activity-card:hover span {
   display: none;
 }
 
-/*
-.flex {
-  border: 1px dashed #444CE0;
+.youtube-container {
+  width: 80%;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
-.text-center {
-  border: 1px dotted #666;
+@media screen and (max-width: 480px) {
+  .main-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .youtube-container {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .text-container {
+    margin-top: 15px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .activity-card {
+    height: 180px;
+    font-size: 12px;
+  }
+
+  .activity-card span {
+    font-size: 0.9rem;
+  }
 }
- */

@@ -44,6 +44,10 @@
         box-shadow: none;
         /* 그림자 제거로 간결하게 */
     }
+
+    .header h2 {
+        font-size: 16px !important;
+    }
 }
 
 .header {

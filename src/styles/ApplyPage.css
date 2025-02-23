@@ -236,3 +236,124 @@
   margin: 0.5rem 0;
   font-size: 18px;
 }
+
+@media screen and (max-width: 768px) {
+  .apply-title {
+    font-size: 20px;
+  }
+
+  .apply-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .apply-button {
+    max-width: 300px;
+    font-size: 16px;
+    height: 45px;
+    line-height: 45px;
+  }
+
+  .tab-list {
+    gap: 20px;
+    font-size: 14px;
+  }
+
+  .tab-content {
+    padding: 15px;
+  }
+
+  .curriculum-box {
+    max-width: 90%;
+    padding: 15px;
+  }
+
+  .card-title {
+    font-size: 16px;
+  }
+
+  .card-description {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .apply-page {
+    padding: 1rem;
+  }
+
+  .apply-title {
+    font-size: 18px;
+  }
+
+  .apply-logo {
+    width: 200px;
+  }
+
+  .apply-buttons {
+    gap: 0.8rem;
+  }
+
+  .apply-button {
+    max-width: 100%;
+    font-size: 14px;
+    height: 40px;
+    line-height: 40px;
+  }
+
+  .tab-list {
+    gap: 15px;
+    font-size: 14px;
+  }
+
+  .tab-item {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .tab-content {
+    padding: 10px;
+  }
+
+  .curriculum-box {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .card-title {
+    font-size: 14px;
+  }
+
+  .card-description {
+    font-size: 12px;
+  }
+
+  .curriculum-card {
+    padding: 15px;
+  }
+
+  .notice-box {
+    padding: 15px;
+  }
+
+  .info-title {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .info-text {
+    font-size: 13px;
+  }
+
+  .info-list {
+    font-size: 13px;
+  }
+
+  .info-list li {
+    margin: 0;
+  }
+
+  .divider {
+    height: 30px;
+  }
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import "../../styles/Notice.css"
 
 const RecentNotices = ({ data }) => {
     const noticesList = data;
@@ -34,7 +35,7 @@ const RecentNotices = ({ data }) => {
             </h2>
 
             <div className="notice-list">
-                <div className="notice-header flex items-center justify-between py-3 border-b-2 border-black font-bold text-center">
+                <div className="main-notice-header flex items-center justify-between py-3 border-b-2 border-black font-bold text-center">
                     <div className="flex-grow text-center">제목</div>
                     <div className="flex-shrink-0 w-64">작성일</div>
                     <div className="flex-shrink-0 w-32">작성자</div>
@@ -42,7 +43,7 @@ const RecentNotices = ({ data }) => {
                 {noticesList.map((notice) => (
                     <div
                         key={notice.id}
-                        className="notice-item flex items-center justify-between py-3 border-b border-gray-300 hover:bg-gray-50 cursor-pointer"
+                        className="main-notice-item flex items-center justify-between py-3 border-b border-gray-300 hover:bg-gray-50 cursor-pointer"
                         onClick={() => handleNoticeClick(notice.id)}
                     >
                         <div className="flex-grow text-left pl-16">{notice.noticeTitle}</div>
