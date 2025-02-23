@@ -267,7 +267,7 @@ const UserRegistration = ({ onNext, onPrev }) => {
                     name="id"
                     value={formData.id}
                     onChange={handleChange}
-                    placeholder="아이디를 입력하세요"
+                    placeholder="아이디(학번)를 입력하세요"
                     className="info-form_input"
                 />
                 <button
@@ -332,13 +332,13 @@ const UserRegistration = ({ onNext, onPrev }) => {
           {/* 이름 입력 필드 */}
           <div className="form-field">
             <div className="input-wrapper">
-              <label>이름</label>
+              <label>닉네임</label>
               <div className="input-container">
                 <input
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="이름을 입력하세요"
+                    placeholder="(예시)00기_김슈니"
                     className="info-form_input"
                 />
               </div>
@@ -410,7 +410,7 @@ const UserRegistration = ({ onNext, onPrev }) => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="전화번호를 입력하세요"
+                    placeholder="010-0000-0000"
                     className="info-form_input"
                 />
               </div>
