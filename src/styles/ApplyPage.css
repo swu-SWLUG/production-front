@@ -356,4 +356,8 @@
   .divider {
     height: 30px;
   }
+
+  .notice-item p {
+    font-size: 12px;
+  }
 }
