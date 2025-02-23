@@ -1,13 +1,22 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import "../../styles/TermsAgreement.css";
 import "../../styles/common.css";
 import PrevNextButtons from "../../components/Auth/PrevNextButtons";
 
-function TermsAgreement({ onNext, onPrev }) {
+function TermsAgreement({ onNext }) {
+  const navigate = useNavigate();
   const [allCheck, setAllCheck] = useState(false);
   const [firstCheck, setFirstCheck] = useState(false);
   const [secondCheck, setSecondCheck] = useState(false);
   const alertShown = useRef(false);
+
+  // 뒤로가기 처리를 위한 함수
+  const handlePrev = () => {
+    if (window.confirm('회원가입을 취소하시겠습니까?')) {
+      window.location.replace('/users/login');
+    }
+  };
 
   //약관
   const allBtnEvent = () => {
@@ -27,10 +36,10 @@ function TermsAgreement({ onNext, onPrev }) {
 
   useEffect(() => {
     if (!alertShown.current) {
-        alert('본 서비스는 학회원만 가입할 수 있습니다.\n학회원이 아닌 경우 가입이 제한될 수 있습니다.');
-        alertShown.current = true;
+      alert('본 서비스는 학회원만 가입할 수 있습니다.\n학회원이 아닌 경우 가입이 제한될 수 있습니다.');
+      alertShown.current = true;
     }
-}, []);
+  }, []);
 
   useEffect(() => {
     setAllCheck(firstCheck && secondCheck);
@@ -166,9 +175,10 @@ function TermsAgreement({ onNext, onPrev }) {
         </div>
 
         <PrevNextButtons
-            onPrev={onPrev}
+            onPrev={handlePrev}
             onNext={onNext}
             disableNext={!firstCheck || !secondCheck}
+            prevText="취소"
         />
       </form>
   );
