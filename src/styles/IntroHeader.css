@@ -58,3 +58,17 @@
     /* 크기 조정 */
   }
 }
+
+@media screen and (max-width: 480px) {
+  .text-logo {
+    display: none;
+  }
+
+  .swlug-logo {
+    width: 50%;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+}

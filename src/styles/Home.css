@@ -71,4 +71,21 @@
   .text-container {
     margin-top: 15px;
   }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .activity-card {
+    height: 180px;
+    font-size: 12px;
+  }
+
+  .activity-card span {
+    font-size: 0.9rem;
+  }
 }
