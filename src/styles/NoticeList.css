@@ -1,0 +1,54 @@
+@media screen and (max-width: 768px) {
+
+    .notice-list .notice-header div:nth-child(4),
+    .notice-list .notice-item div:nth-child(4) {
+        display: none;
+    }
+
+    .notice-list .notice-header div:nth-child(3),
+    .notice-list .notice-item div:nth-child(3) {
+        width: 30%;
+        text-align: center;
+    }
+
+    .notice-list .notice-header div:nth-child(2),
+    .notice-list .notice-item div:nth-child(2) {
+        width: 70%;
+        text-align: left;
+        padding-left: 10px;
+        flex-grow: 1;
+    }
+
+    .notice-list .notice-header div:nth-child(1),
+    .notice-list .notice-item div:nth-child(1) {
+        width: 20%;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .notice-list .notice-header div:nth-child(3),
+    .notice-list .notice-item div:nth-child(3),
+    .notice-list .notice-header div:nth-child(4),
+    .notice-list .notice-item div:nth-child(4) {
+        display: none;
+        /* 작성일(3), 작성자(4) 숨김 */
+    }
+
+    .notice-list .notice-header div:nth-child(1),
+    .notice-list .notice-item div:nth-child(1) {
+        width: 10%;
+        /* 번호를 10%로 유지 */
+        text-align: center;
+    }
+
+    .notice-list .notice-header div:nth-child(2),
+    .notice-list .notice-item div:nth-child(2) {
+        width: 90%;
+        /* 제목이 90%로 보이도록 설정 */
+        text-align: left;
+        padding-left: 10px;
+        flex-grow: 1;
+    }
+}

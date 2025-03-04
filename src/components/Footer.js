@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "../styles/Footer.css"
 
 const Footer = () => {
   const [copyStatus, setCopyStatus] = useState({ message: '', copied: false });
@@ -41,7 +42,7 @@ const Footer = () => {
   return (
     <footer className="footer bg-black text-white py-6 relative">
       {copyStatus.message && (
-        <div className={`absolute left-1/2 bottom-20 transform -translate-x-1/2 bg-white text-gray-800 px-3 py-1 rounded shadow-lg transition-opacity duration-200 ${copyStatus.copied ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`copy-status ${copyStatus.copied ? "visible" : ""}`}>
           {copyStatus.message}
         </div>
       )}

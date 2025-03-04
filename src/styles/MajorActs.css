@@ -78,3 +78,10 @@
     text-align: center;
     color: #000000;
 }
+
+@media (max-width: 480px) {
+    .activity-title {
+        font-size: 21px;
+        font-weight: bold;
+    }
+}

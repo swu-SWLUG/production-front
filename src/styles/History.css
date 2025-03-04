@@ -79,3 +79,49 @@
         width: 45px;
     }
 }
+
+@media (max-width: 480px) {
+    .history-wrap {
+        padding: 20px 15px;
+    }
+
+    .history-section {
+        flex-direction: column;
+        gap: 15px;
+        position: relative;
+        align-items: flex-start;
+    }
+
+    .year {
+        width: 50px;
+        font-size: 20px;
+        text-align: center;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .line {
+        left: 60px;
+        top: 0;
+        height: 100%;
+    }
+
+    .events {
+        padding-left: 70px;
+        padding-top: 10px;
+    }
+
+    .event-item {
+        gap: 20px;
+    }
+
+    .date {
+        width: auto;
+    }
+
+    .content {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+}
