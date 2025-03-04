@@ -16,9 +16,9 @@ function App() {
         <div className="App flex flex-col min-h-screen">
           <Helmet>
             <title>SWLUG</title>
-            <meta name="description" content="서울여자대학교 정보보호학부 소학회 SWLUG(슈러그) 입니다." />
+            <meta name="description" content="서울여자대학교 정보보호학부 소속 소학회 SWLUG(슈러그) 입니다." />
             <meta property="og:title" content="SWLUG" />
-            <meta property="og:description" content="서울여자대학교 정보보호학부 소학회 SWLUG(슈러그) 입니다." />
+            <meta property="og:description" content="서울여자대학교 정보보호학부 소속 소학회 SWLUG(슈러그) 입니다." />
             <meta property="og:url" content="https://www.swlug.com" />
             {/* 네이버 검색엔진 최적화를 위한 추가 메타 태그 */}
           </Helmet>
