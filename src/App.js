@@ -6,7 +6,6 @@ import Footer from './components/Footer';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import ScrollToTop from './components/ScrollToTop';
-import { Helmet } from 'react-helmet-async';
 
 import "./styles/common.css";
 
