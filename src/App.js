@@ -20,7 +20,7 @@ function App() {
             <meta property="og:title" content="SWLUG" />
             <meta property="og:description" content="서울여자대학교 정보보호학부 소속 소학회 SWLUG(슈러그) 입니다." />
             <meta property="og:url" content="https://www.swlug.com" />
-            <link rel="icon" href="/favicon.ico" />
+            <link rel="icon" href="/Logo5.png" />
           </Helmet>
           <Header />
           <main className="min-h-screen">
