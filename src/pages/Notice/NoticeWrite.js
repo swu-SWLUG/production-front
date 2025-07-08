@@ -91,8 +91,9 @@ const NoticeWrite = () => {
             if (noticeToEdit) {
                 await updateNotice({
                     id: noticeToEdit.id,
-                    ...noticeData
-                });
+                    ...noticeData,
+                    imageUrls: uploadedImages
+                }, null);
                 alert('공지사항이 수정되었습니다.');
             } else {
                 await createNotice(noticeData);
@@ -117,7 +118,11 @@ const NoticeWrite = () => {
         const images = Array.from(doc.querySelectorAll('img'));
         const currentImageUrls = images
             .map(img => img.getAttribute('src'))
-            .filter(src => src && src.startsWith('/api/notice/images/'));
+            .filter(src => src && (
+				src.startsWith('/api/notice/images/') || 
+				src.startsWith('https://lh3.googleusercontent.com') || 
+				src.startsWith('https://drive.google.com') // 예외 케이스 추가
+			));
 
         setUploadedImages(currentImageUrls);
     };
