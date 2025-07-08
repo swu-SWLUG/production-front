@@ -1,41 +1,31 @@
-import axios from "axios";
-
 class UploadAdapter {
-    constructor(loader) {
+    constructor(loader, onUploaded) {
         this.loader = loader;
+        this.onUploaded = onUploaded;
     }
 
     upload() {
-        return this.loader.file.then(
-            (file) =>
-                new Promise((resolve, reject) => {
-                    const data = new FormData();
-                    data.append("upload", file);
+        return this.loader.file.then(file => {
+            const data = new FormData();
+            data.append("file", file);
 
-                    axios
-                        .post("/api/blog/upload-image", data, {
-                            headers: {
-                                "Content-Type": "multipart/form-data",
-                            },
-                        })
-                        .then((response) => {
-                            if (response.data.uploaded) {
-                                resolve({
-                                    default: response.data.url,
-                                });
-                            } else {
-                                reject(response.data.error?.message || "업로드 실패");
-                            }
-                        })
-                        .catch((error) => {
-                            reject(error.response?.data?.error?.message || "이미지 업로드에 실패했습니다.");
-                        });
-                })
-        );
+            return fetch("/api/blog/upload-image", {
+                method: "POST",
+                body: data
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.url) {
+                    this.onUploaded(result.url); // 이미지 URL 저장
+                    return { default: result.url };
+                }
+                throw new Error("Upload failed");
+            });
+        });
     }
 
     abort() {
-        // 업로드 중단이 필요한 경우 구현
+        // optional: abort logic
     }
 }
 
