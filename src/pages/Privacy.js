@@ -65,7 +65,7 @@ function Privacy() {
         <section>
           <h2 className="privacy-heading">2. 개인정보의 수집 및 이용 목적</h2>
           <p>
-            소학회는 수집한 개인정보를 다은과 같은 목적으로 사용합니다.<br/><br/>
+            소학회는 수집한 개인정보를 다음과 같은 목적으로 사용합니다.<br/><br/>
           </p>
           <ul>
             <li>- 회원 관리: 회원 식별, 공지사항 전달, 문의사항 응대</li>
@@ -129,9 +129,9 @@ function Privacy() {
           <ul>
             <li>사용자의 개인정보를 보호하고 관련 불만을 처리하기 위해 다음과 같이 개인정보 보호책임자를 지정하고 있습니다.<br/><br/>
               <ul>
-                <li>- 책임자: 김수민(SWLUG 학회장)</li>
-                <li>- 이메일: suming@swu.ac.kr</li>
-                <li>- 전화번호: 010-8376-4075</li>
+                <li>- 책임자: 서다인(SWLUG 학회장)</li>
+                <li>- 이메일: swudain@swu.ac.kr</li>
+                <li>- 전화번호: 010-4309-4936</li>
               </ul>
             </li>
           </ul>

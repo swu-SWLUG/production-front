@@ -51,22 +51,22 @@ const Footer = () => {
           <div className="footer-contact-info relative">
             <h3 className="text-lg font-semibold mb-2">Contact Us</h3>
             <p className="text-sm">
-              29기 학회장 김수민: {" "}
+              29기 학회장 서다인: {" "}
               <button
-                onClick={() => handleCopyEmail('suming@swu.ac.kr')} 
+                onClick={() => handleCopyEmail('swudain@swu.ac.kr')} 
                 className="hover:underline focus:outline-none"
                 aria-label="이메일 복사"
               >
-                suming@swu.ac.kr
+                swudain@swu.ac.kr
               </button>
             </p>
             <p className="text-sm">
-              29기 부학회장 김도연: {" "}
+              29기 부학회장 구여빈: {" "}
               <button
-                onClick={() => handleCopyEmail('yeando@swu.ac.kr')}
+                onClick={() => handleCopyEmail('kyb040404@swu.ac.kr')}
                 className="hover:underline focus:outline-none"
               >
-                yeando@swu.ac.kr
+                kyb040404@swu.ac.kr
               </button>
             </p>
           </div>
