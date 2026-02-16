@@ -14,7 +14,7 @@ const Footer = () => {
     e.preventDefault();
     const validUrls = {
       instagram: 'https://www.instagram.com/security_swlug?igsh=ZjJkOWs0eDd3YWJ3',
-      kakao: 'https://open.kakao.com/o/sfB1uJdh',
+      kakao: 'https://open.kakao.com/o/sk5U9Gei',
       naver: 'https://cafe.naver.com/swlug'
     };
 
@@ -51,22 +51,22 @@ const Footer = () => {
           <div className="footer-contact-info relative">
             <h3 className="text-lg font-semibold mb-2">Contact Us</h3>
             <p className="text-sm">
-              29기 학회장 서다인: {" "}
-              <button
-                onClick={() => handleCopyEmail('swudain@swu.ac.kr')} 
-                className="hover:underline focus:outline-none"
-                aria-label="이메일 복사"
-              >
-                swudain@swu.ac.kr
-              </button>
-            </p>
-            <p className="text-sm">
-              29기 부학회장 구여빈: {" "}
+              30기 학회장 구여빈: {" "}
               <button
                 onClick={() => handleCopyEmail('kyb040404@swu.ac.kr')}
                 className="hover:underline focus:outline-none"
+                aria-label="이메일 복사"
               >
                 kyb040404@swu.ac.kr
+              </button>
+            </p>
+            <p className="text-sm">
+              30기 부학회장 김세은: {" "}
+              <button
+                onClick={() => handleCopyEmail('rlatpdms0104@swu.ac.kr')}
+                className="hover:underline focus:outline-none"
+              >
+                rlatpdms0104@swu.ac.kr
               </button>
             </p>
           </div>
