@@ -24,25 +24,25 @@ const ApplyPage = () => {
             <h1 className="apply-title text-3xl font-bold text-center mb-6" style={{ fontSize: '24px' }}>지원</h1>
             <div className="apply-content">
                 <img src="/img/Logo4.png" alt="SWLUG" className="apply-logo mx-auto" />
-                {isApplyPeriod ? (
+                {!isApplyPeriod ? (
                     <>
                         <p className="apply-description text-center">
-                            서울여자대학교 정보보호학과 소학회 SWLUG에서 29기 신입학회를 모집합니다.
+                            서울여자대학교 정보보호학과 소학회 SWLUG에서 30기 신입학회를 모집합니다.
                         </p>
-                        <p className="apply-period text-center text-lg">모집 기간: ~ 2025.03.07 (금)</p>
+                        <p className="apply-period text-center text-lg">모집 기간: ~ 2025.03.06 (금)</p>
                         <div className="apply-buttons">
                             <a href="/intro" className="apply-button learn-more">
                                 SWLUG에 대해 자세히 알아보기
                             </a>
                             <a
-                                href="https://forms.gle/7nUrRZkW2zkym3a5A"
+                                href="https://forms.gle/iDkWpVjyBty5BWML9"
                                 className="apply-button apply-now"
                                 target="_blank" rel="noopener"
                             >
                                 [1학년] SWLUG 신입 학회원 지원하러 가기
                             </a>
                             <a
-                                href="https://forms.gle/uWbcV9BrHdS7JzSs9"
+                                href="https://forms.gle/9Fm9yYXD5GUnbKqM6"
                                 className="apply-button apply-now"
                                 target="_blank" rel="noopener"
                             >
@@ -61,10 +61,10 @@ const ApplyPage = () => {
                             <div className="divider mx-auto"></div>
                             <h2 className="info-title text-2xl font-semibold text-center mt-8">지원 일정</h2>
                             <ul className="info-list text-center">
-                                <li>(1차) 서류 모집 기간: 2025년 2월 24일 (월) - 3월 7일 (금)</li>
-                                <li>서류 합격자 발표: 2025년 3월 9일 (일)</li><br/>
-                                <li>(2차) 면접: 2025년 3월 13일 (목) - 3월 14일 (금)</li>
-                                <li>최종 합격자 발표: 2024년 3월 15일 (토)</li>
+                                <li>(1차) 서류 모집 기간: 2025년 2월 23일 (월) - 3월 6일 (금)</li>
+                                <li>서류 합격자 발표: 2025년 3월 8일 (일)</li><br/>
+                                <li>(2차) 면접: 2025년 3월 11일 (수) - 3월 13일 (금)</li>
+                                <li>최종 합격자 발표: 2024년 3월 14일 (토)</li>
                             </ul>
                             <div className="divider"></div>
                             <div className="curriculum-box">
@@ -116,14 +116,14 @@ const ApplyPage = () => {
                                             <div className="tab-panel">
                                                 <div className="curriculum-card">
                                                     <h3 className="card-title">1학기 활동</h3>
-                                                    <p className="card-description">• 웹해킹/CTF 문제풀이</p>
+                                                    <p className="card-description">• 웹해킹 심화 교육</p>
                                                     <p className="card-description">• 리눅스 활용 프로젝트</p>
                                                     <p className="card-description">• 논문 분석 스터디</p>
                                                 </div>
                                                 <div className="curriculum-card">
                                                     <h3 className="card-title">2학기 활동</h3>
-                                                    <p className="card-description">• 웹해킹 심화 교육</p>
-                                                    <p className="card-description">• 주제별 스터디</p>
+                                                    <p className="card-description">• 웹해킹 교육</p>
+                                                    <p className="card-description">• 주제별 프로젝트</p>
                                                     <p className="card-description">• 논문 분석 스터디</p>
                                                 </div>
                                             </div>
