@@ -147,8 +147,8 @@ const BlogPost = () => {
             <div className="post-tags">
                 {post.tag && post.tag.map((tag, index) => (
                     <span key={index} className="tag">
-                       #{tag}
-                   </span>
+                        #{tag}
+                    </span>
                 ))}
             </div>
 
@@ -161,8 +161,8 @@ const BlogPost = () => {
                         <>
                             <span className="nav-label">&lt; 이전글</span>
                             <span className="nav-title">
-                               {truncateTitle(adjacentPosts.previous.blogTitle)}
-                           </span>
+                                {truncateTitle(adjacentPosts.previous.blogTitle)}
+                            </span>
                         </>
                     ) : (
                         <span className="nav-label">&lt; 글이 없습니다</span>
@@ -174,9 +174,9 @@ const BlogPost = () => {
                 >
                     {adjacentPosts.next ? (
                         <>
-                           <span className="nav-title">
-                               {truncateTitle(adjacentPosts.next.blogTitle)}
-                           </span>
+                            <span className="nav-title">
+                                {truncateTitle(adjacentPosts.next.blogTitle)}
+                            </span>
                             <span className="nav-label">다음글 &gt;</span>
                         </>
                     ) : (

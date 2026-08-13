@@ -7,7 +7,7 @@ class UploadAdapter {
     upload() {
         return this.loader.file.then(file => {
             const data = new FormData();
-            data.append("file", file);
+            data.append("upload", file);   // "file" → "upload"로 수정
 
             return fetch("/api/blog/upload-image", {
                 method: "POST",
@@ -15,18 +15,16 @@ class UploadAdapter {
             })
             .then(response => response.json())
             .then(result => {
-                if (result.url) {
-                    this.onUploaded(result.url); // 이미지 URL 저장
+                if (result.uploaded && result.url) {   // 서버 응답 필드에 맞춤
+                    this.onUploaded(result.url);
                     return { default: result.url };
                 }
-                throw new Error("Upload failed");
+                throw new Error(result.error?.message || "Upload failed");
             });
         });
     }
 
-    abort() {
-        // optional: abort logic
-    }
+    abort() {}
 }
 
 export default UploadAdapter;

@@ -156,12 +156,12 @@ const UserRegistration = ({ onNext, onPrev }) => {
       setSuccess(prev => ({ ...prev, email: "인증번호가 발송되었습니다." }));
       setError(prev => ({ ...prev, email: "" }));
     } catch (err) {
-      setError(prev => ({
-        ...prev,
-        email: err.response?.data || "인증번호 발송에 실패했습니다."
-      }));
+        const message = typeof err.response?.data === 'string'
+            ? err.response.data
+            : "인증번호 발송에 실패했습니다.";
+        setError(prev => ({ ...prev, email: message }));
     } finally {
-      setIsLoading(false);
+        setIsLoading(false);
     }
   };
 
@@ -190,10 +190,10 @@ const UserRegistration = ({ onNext, onPrev }) => {
         setError(prev => ({ ...prev, auth: "인증번호가 일치하지 않습니다." }));
       }
     } catch (err) {
-      setError(prev => ({
-        ...prev,
-        auth: err.response?.data || "인증에 실패했습니다."
-      }));
+      const message = typeof err.response?.data === 'string'
+            ? err.response.data
+            : "인증에 실패했습니다.";
+        setError(prev => ({ ...prev, auth: message }));
     } finally {
       setIsLoading(false);
     }

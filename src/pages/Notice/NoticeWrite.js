@@ -1,12 +1,55 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { createNotice, updateNotice } from '../../services/noticeAPI';
-import { CKEditor, useCKEditorCloud } from '@ckeditor/ckeditor5-react';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import {
+    ClassicEditor,
+    Autoformat,
+    AutoImage,
+    BlockQuote,
+    Bold,
+    Code,
+    Essentials,
+    FontBackgroundColor,
+    FontColor,
+    FontSize,
+    Heading,
+    ImageBlock,
+    ImageCaption,
+    ImageInline,
+    ImageInsert,
+    ImageInsertViaUrl,
+    ImageResize,
+    ImageStyle,
+    ImageTextAlternative,
+    ImageToolbar,
+    ImageUpload,
+    Indent,
+    IndentBlock,
+    Italic,
+    Link,
+    LinkImage,
+    List,
+    ListProperties,
+    Paragraph,
+    PasteFromOffice,
+    SimpleUploadAdapter,
+    Strikethrough,
+    Table,
+    TableCaption,
+    TableCellProperties,
+    TableColumnResize,
+    TableProperties,
+    TableToolbar,
+    TextTransformation,
+    TodoList,
+    Underline
+} from 'ckeditor5';
+import coreTranslations from 'ckeditor5/translations/ko.js';
+import 'ckeditor5/ckeditor5.css';
 import UploadAdapter from '../Blog/UploadAdapter';
 import "../../styles/NoticeWrite.css";
 import {useSelector} from "react-redux";
-
-const LICENSE_KEY = process.env.REACT_APP_ckEditor_LICENSE;
 
 const NoticeWrite = () => {
     const navigate = useNavigate();
@@ -23,9 +66,7 @@ const NoticeWrite = () => {
 
     const editorContainerRef = useRef(null);
     const editorRef = useRef(null);
-    const cloud = useCKEditorCloud({ version: '44.1.0', translations: ['ko'] });
 
-    // 권한 체크
     useEffect(() => {
         if (!isAuthenticated || !allowedRoles.includes(userRole)) {
             alert("접근 권한이 없습니다.");
@@ -34,7 +75,6 @@ const NoticeWrite = () => {
         }
     }, [isAuthenticated, userRole, navigate]);
 
-    // 새로고침 경고 추가
     useEffect(() => {
         const handleBeforeUnload = (e) => {
             if (title || contents) {
@@ -50,7 +90,6 @@ const NoticeWrite = () => {
         };
     }, [title, contents]);
 
-    // 레이아웃 준비
     useEffect(() => {
         setIsLayoutReady(true);
         return () => setIsLayoutReady(false);
@@ -82,7 +121,7 @@ const NoticeWrite = () => {
 
         try {
             const noticeData = {
-                boardCategory: 0,  // 추가: 공지사항은 항상 카테고리 0
+                boardCategory: 0,
                 noticeTitle: title,
                 noticeContents: contents,
                 imageUrl: uploadedImages
@@ -112,213 +151,138 @@ const NoticeWrite = () => {
         const data = editor.getData();
         setContents(data);
 
-        // 에디터 내용에서 이미지 URL 추출
         const parser = new DOMParser();
         const doc = parser.parseFromString(data, 'text/html');
         const images = Array.from(doc.querySelectorAll('img'));
         const currentImageUrls = images
             .map(img => img.getAttribute('src'))
-            .filter(src => src && (
-				src.startsWith('/api/notice/images/') || 
-				src.startsWith('https://lh3.googleusercontent.com') || 
-				src.startsWith('https://drive.google.com') // 예외 케이스 추가
-			));
+            .filter(src => !!src);
 
         setUploadedImages(currentImageUrls);
     };
 
-    const { ClassicEditor, editorConfig } = React.useMemo(() => {
-        if (cloud.status !== 'success' || !isLayoutReady) {
+    const editorConfig = React.useMemo(() => {
+        if (!isLayoutReady) {
             return {};
         }
 
-        const {
-            ClassicEditor,
-            Autoformat,
-            AutoImage,
-            BlockQuote,
-            Bold,
-            CloudServices,
-            Code,
-            Essentials,
-            FontBackgroundColor,
-            FontColor,
-            FontSize,
-            Heading,
-            ImageBlock,
-            ImageCaption,
-            ImageInline,
-            ImageInsert,
-            ImageInsertViaUrl,
-            ImageResize,
-            ImageStyle,
-            ImageTextAlternative,
-            ImageToolbar,
-            ImageUpload,
-            Indent,
-            IndentBlock,
-            Italic,
-            Link,
-            LinkImage,
-            List,
-            ListProperties,
-            Paragraph,
-            PasteFromOffice,
-            SimpleUploadAdapter,
-            Strikethrough,
-            Table,
-            TableCaption,
-            TableCellProperties,
-            TableColumnResize,
-            TableProperties,
-            TableToolbar,
-            TextTransformation,
-            TodoList,
-            Underline
-        } = cloud.CKEditor;
-
         return {
-            ClassicEditor,
-            editorConfig: {
-                toolbar: {
-                    items: [
-                        'heading',
-                        '|',
-                        'fontSize',
-                        'fontColor',
-                        'fontBackgroundColor',
-                        '|',
-                        'bold',
-                        'italic',
-                        'underline',
-                        'strikethrough',
-                        'code',
-                        '|',
-                        'link',
-                        'insertImage',
-                        'insertTable',
-                        'blockQuote',
-                        '|',
-                        'bulletedList',
-                        'numberedList',
-                        'todoList',
-                        'outdent',
-                        'indent'
-                    ],
-                },
-                plugins: [
-                    Autoformat,
-                    AutoImage,
-                    BlockQuote,
-                    Bold,
-                    CloudServices,
-                    Code,
-                    Essentials,
-                    FontBackgroundColor,
-                    FontColor,
-                    FontSize,
-                    Heading,
-                    ImageBlock,
-                    ImageCaption,
-                    ImageInline,
-                    ImageInsert,
-                    ImageInsertViaUrl,
-                    ImageResize,
-                    ImageStyle,
-                    ImageTextAlternative,
-                    ImageToolbar,
-                    ImageUpload,
-                    Indent,
-                    IndentBlock,
-                    Italic,
-                    Link,
-                    LinkImage,
-                    List,
-                    ListProperties,
-                    Paragraph,
-                    PasteFromOffice,
-                    SimpleUploadAdapter,
-                    Strikethrough,
-                    Table,
-                    TableCaption,
-                    TableCellProperties,
-                    TableColumnResize,
-                    TableProperties,
-                    TableToolbar,
-                    TextTransformation,
-                    TodoList,
-                    Underline,
-                    MyCustomUploadAdapterPlugin
+            toolbar: {
+                items: [
+                    'heading',
+                    '|',
+                    'fontSize',
+                    'fontColor',
+                    'fontBackgroundColor',
+                    '|',
+                    'bold',
+                    'italic',
+                    'underline',
+                    'strikethrough',
+                    'code',
+                    '|',
+                    'link',
+                    'insertImage',
+                    'insertTable',
+                    'blockQuote',
+                    '|',
+                    'bulletedList',
+                    'numberedList',
+                    'todoList',
+                    'outdent',
+                    'indent'
                 ],
-                fontSize: {
-                    options: [10, 12, 14, 'default', 18, 20, 22],
-                    supportAllValues: true
-                },
-                image: {
-					resizeOptions: [
-						{
-							name: 'resizeImage:original',
-							value: null,
-							label: '원본 크기'
-						},
-						{
-							name: 'resizeImage:50',
-							value: '50',
-							label: '50%'
-						},
-						{
-							name: 'resizeImage:75',
-							value: '75',
-							label: '75%'
-						}
-					],
-					resizeUnit: '%',
-					toolbar: [
-						'imageStyle:alignLeft',
-						'imageStyle:alignCenter',
-						'imageStyle:alignRight',
-						'|',
-						'toggleImageCaption',
-						'imageTextAlternative',
-						'resizeImage'
-					],
-					styles: {
-						options: [
-							'alignLeft',
-							'alignCenter',
-							'alignRight'
-						]
-					}
-				},
-                licenseKey: LICENSE_KEY,
-                link: {
-                    addTargetToExternalLinks: true,
-                    defaultProtocol: 'https://'
-                },
-                simpleUpload: {
-                    uploadUrl: '/api/notice/upload-image',
-                },
-                placeholder: '내용을 입력하세요',
-                table: {
-                    contentToolbar: [
-                        'tableColumn',
-                        'tableRow',
-                        'mergeTableCells',
-                        'tableProperties',
-                        'tableCellProperties'
-                    ]
+            },
+            plugins: [
+                Autoformat,
+                AutoImage,
+                BlockQuote,
+                Bold,
+                Code,
+                Essentials,
+                FontBackgroundColor,
+                FontColor,
+                FontSize,
+                Heading,
+                ImageBlock,
+                ImageCaption,
+                ImageInline,
+                ImageInsert,
+                ImageInsertViaUrl,
+                ImageResize,
+                ImageStyle,
+                ImageTextAlternative,
+                ImageToolbar,
+                ImageUpload,
+                Indent,
+                IndentBlock,
+                Italic,
+                Link,
+                LinkImage,
+                List,
+                ListProperties,
+                Paragraph,
+                PasteFromOffice,
+                SimpleUploadAdapter,
+                Strikethrough,
+                Table,
+                TableCaption,
+                TableCellProperties,
+                TableColumnResize,
+                TableProperties,
+                TableToolbar,
+                TextTransformation,
+                TodoList,
+                Underline,
+                MyCustomUploadAdapterPlugin
+            ],
+            translations: [coreTranslations],
+            language: 'ko',
+            fontSize: {
+                options: [10, 12, 14, 'default', 18, 20, 22],
+                supportAllValues: true
+            },
+            image: {
+                resizeOptions: [
+                    { name: 'resizeImage:original', value: null, label: '원본 크기' },
+                    { name: 'resizeImage:50', value: '50', label: '50%' },
+                    { name: 'resizeImage:75', value: '75', label: '75%' }
+                ],
+                resizeUnit: '%',
+                toolbar: [
+                    'imageStyle:alignLeft',
+                    'imageStyle:alignCenter',
+                    'imageStyle:alignRight',
+                    '|',
+                    'toggleImageCaption',
+                    'imageTextAlternative',
+                    'resizeImage'
+                ],
+                styles: {
+                    options: ['alignLeft', 'alignCenter', 'alignRight']
                 }
+            },
+            licenseKey: 'GPL',
+            link: {
+                addTargetToExternalLinks: true,
+                defaultProtocol: 'https://'
+            },
+            placeholder: '내용을 입력하세요',
+            table: {
+                contentToolbar: [
+                    'tableColumn',
+                    'tableRow',
+                    'mergeTableCells',
+                    'tableProperties',
+                    'tableCellProperties'
+                ]
             }
         };
-    }, [cloud, isLayoutReady]);
+    }, [isLayoutReady]);
 
     return (
         <div className="notice-write">
-            <select
-                value="0"
-                disabled
-                className="category-select"
-            >
+            <select value="0" disabled className="category-select">
                 <option value="0">공지사항</option>
             </select>
             <input
@@ -331,7 +295,7 @@ const NoticeWrite = () => {
             <div className="editor-container">
                 <div ref={editorContainerRef}>
                     <div ref={editorRef}>
-                        {ClassicEditor && editorConfig && (
+                        {isLayoutReady && (
                             <CKEditor
                                 editor={ClassicEditor}
                                 config={editorConfig}
