@@ -3,11 +3,55 @@ import { writePost, updatePost } from "../../services/blogAPI";
 import "../../styles/BlogWrite.css";
 import {useLocation, useNavigate} from "react-router-dom";
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { CKEditor, useCKEditorCloud } from '@ckeditor/ckeditor5-react';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import {
+	ClassicEditor,
+	Autoformat,
+	AutoImage,
+	Autosave,
+	BlockQuote,
+	Bold,
+	Code,
+	Essentials,
+	FontBackgroundColor,
+	FontColor,
+	FontSize,
+	Heading,
+	ImageBlock,
+	ImageCaption,
+	ImageInline,
+	ImageInsert,
+	ImageInsertViaUrl,
+	ImageResize,
+	ImageStyle,
+	ImageTextAlternative,
+	ImageToolbar,
+	ImageUpload,
+	Indent,
+	IndentBlock,
+	Italic,
+	Link,
+	LinkImage,
+	List,
+	ListProperties,
+	Paragraph,
+	PasteFromOffice,
+	SimpleUploadAdapter,
+	Strikethrough,
+	Table,
+	TableCaption,
+	TableCellProperties,
+	TableColumnResize,
+	TableProperties,
+	TableToolbar,
+	TextTransformation,
+	TodoList,
+	Underline
+} from 'ckeditor5';
+import coreTranslations from 'ckeditor5/translations/ko.js';
+import 'ckeditor5/ckeditor5.css';
 import UploadAdapter from './UploadAdapter';
 import {useSelector} from "react-redux";
-
-const LICENSE_KEY = process.env.REACT_APP_ckEditor_LICENSE;
 
 const BlogWrite = () => {
 	const navigate = useNavigate();
@@ -19,7 +63,6 @@ const BlogWrite = () => {
 	const allowedRoles = ["ROLE_USER", "ROLE_ADMIN"];
 	const MAX_TAGS = 10;
 
-	// 모든 state 선언을 최상단으로 이동
 	const [title, setTitle] = useState(postToEdit?.title || "");
 	const [contents, setContents] = useState(postToEdit?.contents || "");
 	const [category, setCategory] = useState(postToEdit?.category || "");
@@ -30,9 +73,7 @@ const BlogWrite = () => {
 
 	const editorContainerRef = useRef(null);
 	const editorRef = useRef(null);
-	const cloud = useCKEditorCloud({ version: '44.1.0', translations: ['ko'] });
 
-	// 권한 체크
 	useEffect(() => {
 		if (!isAuthenticated || !allowedRoles.includes(userRole)) {
 			alert("접근 권한이 없습니다.");
@@ -41,7 +82,6 @@ const BlogWrite = () => {
 		}
 	}, [isAuthenticated, userRole, navigate]);
 
-	// 새로고침 경고
 	useEffect(() => {
 		const handleBeforeUnload = (e) => {
 			if (title || contents || tags.length > 0) {
@@ -57,13 +97,11 @@ const BlogWrite = () => {
 		};
 	}, [title, contents, tags]);
 
-	// 레이아웃 준비
 	useEffect(() => {
 		setIsLayoutReady(true);
 		return () => setIsLayoutReady(false);
 	}, []);
 
-	// boardType 설정 로직
 	const boardType = useMemo(() => {
 		if (location.state?.boardType) {
 			return location.state.boardType;
@@ -76,7 +114,6 @@ const BlogWrite = () => {
 		return "";
 	}, [location.pathname, location.state?.boardType]);
 
-	// 게시판 옵션
 	const boardOptions = useMemo(() => {
 		if (boardType === "notice") {
 			return [<option value="0" key="0">공지사항</option>];
@@ -135,6 +172,7 @@ const BlogWrite = () => {
 				boardTitle: title,
 				boardContent: contents,
 				tag: tags,
+				imageUrl:uploadedImages,
 			};
 
 			if (postToEdit) {
@@ -148,230 +186,157 @@ const BlogWrite = () => {
 				await writePost(postData, image);
 				alert("게시물이 등록되었습니다.");
 			}
-			
+
 			navigate(isMyPageEdit ? '/users/mypage' : `/${boardType}`);
 			window.scrollTo(0, 0);
-			//window.location.reload();
 		} catch (error) {
 			console.error("글 등록/수정 실패:", error);
 			alert("글 등록/수정에 실패했습니다. 다시 시도해주세요.");
 		}
 	};
 
-	const { ClassicEditor, editorConfig } = useMemo(() => {
-		if (cloud.status !== 'success' || !isLayoutReady) {
+	const editorConfig = useMemo(() => {
+		if (!isLayoutReady) {
 			return {};
 		}
 
-		const {
-			ClassicEditor,
-			Autoformat,
-			AutoImage,
-			Autosave,
-			BlockQuote,
-			Bold,
-			CloudServices,
-			Code,
-			Essentials,
-			FontBackgroundColor,
-			FontColor,
-			FontSize,
-			Heading,
-			ImageBlock,
-			ImageCaption,
-			ImageInline,
-			ImageInsert,
-			ImageInsertViaUrl,
-			ImageResize,
-			ImageStyle,
-			ImageTextAlternative,
-			ImageToolbar,
-			ImageUpload,
-			Indent,
-			IndentBlock,
-			Italic,
-			Link,
-			LinkImage,
-			List,
-			ListProperties,
-			Paragraph,
-			PasteFromOffice,
-			SimpleUploadAdapter,
-			Strikethrough,
-			Table,
-			TableCaption,
-			TableCellProperties,
-			TableColumnResize,
-			TableProperties,
-			TableToolbar,
-			TextTransformation,
-			TodoList,
-			Underline
-		} = cloud.CKEditor;
-
 		return {
-			ClassicEditor,
-			editorConfig: {
-				toolbar: {
-					items: [
-						'heading',
-						'|',
-						'fontSize',
-						'fontColor',
-						'fontBackgroundColor',
-						'|',
-						'bold',
-						'italic',
-						'underline',
-						'strikethrough',
-						'code',
-						'|',
-						'link',
-						'insertImage',
-						'insertTable',
-						'blockQuote',
-						'|',
-						'bulletedList',
-						'numberedList',
-						'todoList',
-						'outdent',
-						'indent'
-					],
-				},
-				plugins: [
-					Autoformat,
-					AutoImage,
-					Autosave,
-					BlockQuote,
-					Bold,
-					CloudServices,
-					Code,
-					Essentials,
-					FontBackgroundColor,
-					FontColor,
-					FontSize,
-					Heading,
-					ImageBlock,
-					ImageCaption,
-					ImageInline,
-					ImageInsert,
-					ImageInsertViaUrl,
-					ImageResize,
-					ImageStyle,
-					ImageTextAlternative,
-					ImageToolbar,
-					ImageUpload,
-					Indent,
-					IndentBlock,
-					Italic,
-					Link,
-					LinkImage,
-					List,
-					ListProperties,
-					Paragraph,
-					PasteFromOffice,
-					SimpleUploadAdapter,
-					Strikethrough,
-					Table,
-					TableCaption,
-					TableCellProperties,
-					TableColumnResize,
-					TableProperties,
-					TableToolbar,
-					TextTransformation,
-					TodoList,
-					Underline,
-					MyCustomUploadAdapterPlugin
+			toolbar: {
+				items: [
+					'heading',
+					'|',
+					'fontSize',
+					'fontColor',
+					'fontBackgroundColor',
+					'|',
+					'bold',
+					'italic',
+					'underline',
+					'strikethrough',
+					'code',
+					'|',
+					'link',
+					'insertImage',
+					'insertTable',
+					'blockQuote',
+					'|',
+					'bulletedList',
+					'numberedList',
+					'todoList',
+					'outdent',
+					'indent'
 				],
-				fontSize: {
-					options: [10, 12, 14, 'default', 18, 20, 22],
-					supportAllValues: true
-				},
-				heading: {
-					options: [
-						{ model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-						{ model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-						{ model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
-						{ model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
-						{ model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' },
-						{ model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5' },
-						{ model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
-					]
-				},
-				image: {
-					resizeOptions: [
-						{
-							name: 'resizeImage:original',
-							value: null,
-							label: '원본 크기'
-						},
-						{
-							name: 'resizeImage:50',
-							value: '50',
-							label: '50%'
-						},
-						{
-							name: 'resizeImage:75',
-							value: '75',
-							label: '75%'
-						}
-					],
-					resizeUnit: '%',
-					toolbar: [
-						'imageStyle:alignLeft',
-						'imageStyle:alignCenter',
-						'imageStyle:alignRight',
-						'|',
-						'toggleImageCaption',
-						'imageTextAlternative',
-						'resizeImage'
-					],
-					styles: {
-						options: [
-							'alignLeft',
-							'alignCenter',
-							'alignRight'
-						]
-					}
-				},
-				initialData: '',
-				licenseKey: LICENSE_KEY,
-				link: {
-					addTargetToExternalLinks: true,
-					defaultProtocol: 'https://'
-				},
-				simpleUpload: {
-					uploadUrl: '/api/blog/upload-image',
-				},
-				placeholder: '내용을 입력하세요',
-				table: {
-					contentToolbar: [
-						'tableColumn',
-						'tableRow',
-						'mergeTableCells',
-						'tableProperties',
-						'tableCellProperties'
-					]
+			},
+			plugins: [
+				Autoformat,
+				AutoImage,
+				Autosave,
+				BlockQuote,
+				Bold,
+				Code,
+				Essentials,
+				FontBackgroundColor,
+				FontColor,
+				FontSize,
+				Heading,
+				ImageBlock,
+				ImageCaption,
+				ImageInline,
+				ImageInsert,
+				ImageInsertViaUrl,
+				ImageResize,
+				ImageStyle,
+				ImageTextAlternative,
+				ImageToolbar,
+				ImageUpload,
+				Indent,
+				IndentBlock,
+				Italic,
+				Link,
+				LinkImage,
+				List,
+				ListProperties,
+				Paragraph,
+				PasteFromOffice,
+				SimpleUploadAdapter,
+				Strikethrough,
+				Table,
+				TableCaption,
+				TableCellProperties,
+				TableColumnResize,
+				TableProperties,
+				TableToolbar,
+				TextTransformation,
+				TodoList,
+				Underline,
+				MyCustomUploadAdapterPlugin
+			],
+			translations: [coreTranslations],
+			language: 'ko',
+			fontSize: {
+				options: [10, 12, 14, 'default', 18, 20, 22],
+				supportAllValues: true
+			},
+			heading: {
+				options: [
+					{ model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+					{ model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+					{ model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+					{ model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
+					{ model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' },
+					{ model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5' },
+					{ model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
+				]
+			},
+			image: {
+				resizeOptions: [
+					{ name: 'resizeImage:original', value: null, label: '원본 크기' },
+					{ name: 'resizeImage:50', value: '50', label: '50%' },
+					{ name: 'resizeImage:75', value: '75', label: '75%' }
+				],
+				resizeUnit: '%',
+				toolbar: [
+					'imageStyle:alignLeft',
+					'imageStyle:alignCenter',
+					'imageStyle:alignRight',
+					'|',
+					'toggleImageCaption',
+					'imageTextAlternative',
+					'resizeImage'
+				],
+				styles: {
+					options: ['alignLeft', 'alignCenter', 'alignRight']
 				}
+			},
+			initialData: '',
+			licenseKey: 'GPL',
+			link: {
+				addTargetToExternalLinks: true,
+				defaultProtocol: 'https://'
+			},
+			placeholder: '내용을 입력하세요',
+			table: {
+				contentToolbar: [
+					'tableColumn',
+					'tableRow',
+					'mergeTableCells',
+					'tableProperties',
+					'tableCellProperties'
+				]
 			}
 		};
-	}, [cloud, isLayoutReady]);
+	}, [isLayoutReady]);
 
 	const handleEditorChange = (event, editor) => {
 		const data = editor.getData();
 		setContents(data);
 
-		// 에디터 내용에서 이미지 URL 추출
 		const parser = new DOMParser();
 		const doc = parser.parseFromString(data, 'text/html');
 		const images = Array.from(doc.querySelectorAll('img'));
 		const currentImageUrls = images
 			.map(img => img.getAttribute('src'))
-			.filter(src => src && (
-				src.startsWith('/api/blog/images/') || 
-				src.startsWith('https://lh3.googleusercontent.com') || 
-				src.startsWith('https://drive.google.com') // 예외 케이스 추가
-			));
+			.filter(src => !!src);
 
 		setUploadedImages(currentImageUrls);
 	};
@@ -390,14 +355,15 @@ const BlogWrite = () => {
 				type="text"
 				placeholder="제목을 입력하세요"
 				value={title}
-				onChange={(e) => setTitle(e.target.value)}className="title-input"
+				onChange={(e) => setTitle(e.target.value)}
+				className="title-input"
 			/>
 
 			<div className="main-container">
 				<div className="editor-container editor-container_classic-editor" ref={editorContainerRef}>
 					<div className="editor-container__editor">
 						<div ref={editorRef}>
-							{ClassicEditor && editorConfig && (
+							{isLayoutReady && (
 								<CKEditor
 									editor={ClassicEditor}
 									config={editorConfig}
