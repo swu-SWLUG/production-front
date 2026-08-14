@@ -14,6 +14,7 @@ const BlogPost = () => {
     const [adjacentPosts, setAdjacentPosts] = useState({ previous: null, next: null });
     const isMyPageEdit = location.state?.isMyPageEdit || false;
     const currentUserId = localStorage.getItem("userId");
+    const userRole = localStorage.getItem("userRole");
 
     useEffect(() => {
         window.scrollTo(0,0);
@@ -135,7 +136,7 @@ const BlogPost = () => {
                     <span className="divider">|</span>
                     <span className="date">{formatDate(post.date)}</span>
                 </div>
-                {currentUserId === post.userId && (
+                {(currentUserId === post.userId || userRole === "ROLE_ADMIN") && (
                     <div className="button-group">
                         <button className="edit-btn" onClick={handleEdit}>수정</button>
                         <button className="delete-btn" onClick={handleDelete}>삭제</button>
