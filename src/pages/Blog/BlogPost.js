@@ -4,6 +4,7 @@ import "../../styles/BlogPost.css";
 import "../../services/blogAPI"
 import axios from "axios";
 import {deletePost} from "../../services/blogAPI";
+import { useSelector } from "react-redux";
 
 const BlogPost = () => {
     const { boardId } = useParams();
@@ -13,6 +14,7 @@ const BlogPost = () => {
     const [loading, setLoading] = useState(true);
     const [adjacentPosts, setAdjacentPosts] = useState({ previous: null, next: null });
     const isMyPageEdit = location.state?.isMyPageEdit || false;
+    const { isAuthenticated } = useSelector(state => state.auth);
     const currentUserId = localStorage.getItem("userId");
     const userRole = localStorage.getItem("userRole");
 
@@ -97,9 +99,6 @@ const BlogPost = () => {
 
     if (!post) return <p>게시물을 찾을 수 없습니다.</p>;
 
-    const canEdit =
-    !!currentUserId &&
-    (currentUserId === post.userId || userRole === "ROLE_ADMIN");
 
     const categoryMapping = {
         "0": "공지사항",
@@ -140,11 +139,11 @@ const BlogPost = () => {
                     <span className="divider">|</span>
                     <span className="date">{formatDate(post.date)}</span>
                 </div>
-                {canEdit && (
+                {isAuthenticated && (currentUserId === post.userId || userRole === "ROLE_ADMIN") && (
                     <div className="button-group">
                     <button className="edit-btn" onClick={handleEdit}>수정</button>
                     <button className="delete-btn" onClick={handleDelete}>삭제</button>
-                    </div>
+                </div>
                 )}
             </div>
             <div className="ck-content" dangerouslySetInnerHTML={{__html: post.contents}}/>
