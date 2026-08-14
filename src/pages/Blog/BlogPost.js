@@ -97,6 +97,10 @@ const BlogPost = () => {
 
     if (!post) return <p>게시물을 찾을 수 없습니다.</p>;
 
+    const canEdit =
+    !!currentUserId &&
+    (currentUserId === post.userId || userRole === "ROLE_ADMIN");
+
     const categoryMapping = {
         "0": "공지사항",
         "1": "성과",
@@ -136,10 +140,10 @@ const BlogPost = () => {
                     <span className="divider">|</span>
                     <span className="date">{formatDate(post.date)}</span>
                 </div>
-                {(currentUserId === post.userId || userRole === "ROLE_ADMIN") && (
+                {canEdit && (
                     <div className="button-group">
-                        <button className="edit-btn" onClick={handleEdit}>수정</button>
-                        <button className="delete-btn" onClick={handleDelete}>삭제</button>
+                    <button className="edit-btn" onClick={handleEdit}>수정</button>
+                    <button className="delete-btn" onClick={handleDelete}>삭제</button>
                     </div>
                 )}
             </div>
