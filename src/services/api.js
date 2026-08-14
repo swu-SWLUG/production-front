@@ -47,6 +47,7 @@ export const logout = async () => {
       localStorage.removeItem('authToken');
       localStorage.removeItem('user');
       localStorage.removeItem('userId');
+      localStorage.removeItem('userRole');
       resolve({ status: 200, message: 'Logout successful' });
     });
   }
@@ -56,6 +57,7 @@ export const logout = async () => {
     localStorage.removeItem('authToken');
     localStorage.removeItem('user');
     localStorage.removeItem('userId');
+    localStorage.removeItem('userRole');
   }
   return response;
 };

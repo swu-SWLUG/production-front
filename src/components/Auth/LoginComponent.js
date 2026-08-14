@@ -42,6 +42,7 @@ function LoginComponent() {
           }
         } catch (error) {
           localStorage.removeItem('userId');
+          localStorage.removeItem('userRole');
         }
       }
     };
