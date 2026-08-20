@@ -5,7 +5,7 @@ const Footer = () => {
   const [copyStatus, setCopyStatus] = useState({ message: '', copied: false });
 
   const handlePrivacyClick = () => {
-    window.history.pushState({}, '', '/privacy');
+    window.history.pushState({}, '', 'rules/privacy_v1');
     window.location.reload();
     window.scrollTo(0, 0);
   };

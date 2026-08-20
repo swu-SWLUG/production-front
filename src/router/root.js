@@ -1,6 +1,5 @@
 import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import Privacy from "../pages/Privacy";
 import ProtectedRoute from "../ProtectedRoute"
 
 // Lazy-loaded components
@@ -19,6 +18,10 @@ const BlogMain = lazy(() => import("../pages/Blog/BlogMain"));
 const BlogPost = lazy(() => import("../pages/Blog/BlogPost"));
 const BlogWrite = lazy(() => import("../pages/Blog/BlogWrite"));
 const NotFound = lazy(() => import("../components/NotFound"))
+
+//privacy 추가
+const Privacy = lazy(() => import("../pages/rules/Privacy"));
+const Privacy_v1 = lazy(() => import("../pages/rules/privacy_v1"));
 
 const root = createBrowserRouter([
   // 게시판 작성 경로
@@ -54,7 +57,8 @@ const root = createBrowserRouter([
   { path: "/intro", element: <Intro /> },
   { path: "/blog", element: <BlogMain /> },
   { path: "/board/:boardId", element: <BlogPost /> },
-  { path: "/privacy", element: <Privacy /> },
+  { path: "/rules/privacy_v1", element: <Privacy_v1 /> },
+  { path: "/rules/privacy", element: <Privacy /> },
   { path: "/", element: <HomePage /> }, // 기본 경로
 ]);
 
