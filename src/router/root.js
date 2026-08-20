@@ -20,8 +20,8 @@ const BlogWrite = lazy(() => import("../pages/Blog/BlogWrite"));
 const NotFound = lazy(() => import("../components/NotFound"))
 
 //privacy 추가
-const Privacy = lazy(() => import("../../rules/Privacy"));
-const Privacy_v1 = lazy(() => import("../../rules/privacy_v1"));
+const Privacy = lazy(() => import("../pages/rules/Privacy"));
+const Privacy_v1 = lazy(() => import("../pages/rules/privacy_v1"));
 
 const root = createBrowserRouter([
   // 게시판 작성 경로
